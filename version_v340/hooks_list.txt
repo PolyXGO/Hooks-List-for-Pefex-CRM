@@ -1,0 +1,2113 @@
+# Perfex CRM v3.4.0 Core Hooks List
+
+File ---> application\controllers\Authentication.php:
+   10:      hooks()->do_action('clients_authentication_constructor', $this);
+   61:      hooks()->do_action('after_contact_login');
+   217:      hooks()->do_action('after_client_register', $clientid);
+   239:      hooks()->do_action('after_client_register_logged_in', $clientid);
+   307:      hooks()->do_action('before_user_reset_password', [...]);
+   320:      hooks()->do_action('after_user_reset_password', [...]);
+   341:      hooks()->do_action('after_client_logout');
+VI: Hook can thiệp vào clients authentication constructor, Thực hiện sau khi contact login, Thực hiện sau khi client register, Thực hiện sau khi client register logged in, Thực hiện trước khi user reset password, Thực hiện sau khi user reset password, Thực hiện sau khi client logout.
+EN: Hook to interact with clients authentication constructor, Executed after contact login, Executed after client register, Executed after client register logged in, Executed before user reset password, Executed after user reset password, Executed after client logout.
+
+File ---> application\controllers\Clients.php:
+   19:      hooks()->do_action('after_clients_area_init', $this);
+   356:      $total_tasks = hooks()->apply_filters('client_project_total_tasks', $total_tasks, $id);
+   363:      $data['tasks_not_completed'] = hooks()->apply_filters('client_project_tasks_not_completed', $data['tasks_not_completed'], $id);
+   370:      $data['tasks_completed'] = hooks()->apply_filters('client_project_tasks_completed', $data['tasks_completed'], $id);
+   534:      $files_where = hooks()->apply_filters('customers_area_files_where', $files_where);
+   637:      $defaultStatuses = hooks()->apply_filters('customers_area_list_default_ticket_statuses', [1, 2, 3, 4]);
+   1176:      hooks()->do_action('before_remove_contact_profile_image', $id);
+   1226:      $sessionData = hooks()->apply_filters('stripe_update_credit_card_session_data', $sessionData, $contact);
+VI: Thực hiện sau khi clients area init, Hook can thiệp vào client project total tasks, Hook can thiệp vào client project tasks not completed, Hook can thiệp vào client project tasks completed, Hook can thiệp vào customers area files where, Hook can thiệp vào customers area list default ticket statuses, Thực hiện trước khi remove contact profile image, Hook can thiệp vào stripe update credit card session data.
+EN: Executed after clients area init, Hook to interact with client project total tasks, Hook to interact with client project tasks not completed, Hook to interact with client project tasks completed, Hook to interact with customers area files where, Hook to interact with customers area list default ticket statuses, Executed before remove contact profile image, Hook to interact with stripe update credit card session data.
+
+File ---> application\controllers\Contacts.php:
+   30:      hooks()->do_action('after_clients_area_init', $this);
+VI: Thực hiện sau khi clients area init.
+EN: Executed after clients area init.
+
+File ---> application\controllers\Contract.php:
+   56:      $data['contract']  = hooks()->apply_filters('contract_html_pdf_data', $contract);
+   64:      hooks()->do_action('contract_html_viewed', $id);
+   66:      $data                      = hooks()->apply_filters('contract_customers_area_view_data', $data);
+VI: Hook can thiệp vào contract html pdf data, Hook can thiệp vào contract html viewed, Hook can thiệp vào contract customers area view data.
+EN: Hook to interact with contract html pdf data, Hook to interact with contract html viewed, Hook to interact with contract customers area view data.
+
+File ---> application\controllers\Cron.php:
+   17:      $seconds = hooks()->apply_filters('cron_functions_execute_seconds', 300);
+VI: Hook can thiệp vào cron functions execute seconds.
+EN: Hook to interact with cron functions execute seconds.
+
+File ---> application\controllers\Download.php:
+   39:      hooks()->do_action('before_output_preview_video');
+   83:      hooks()->do_action('before_output_preview_image');
+   234:      $path = hooks()->apply_filters('download_file_path', $path, [...]);
+VI: Thực hiện trước khi output preview video, Thực hiện trước khi output preview image, Hook can thiệp vào download file path.
+EN: Executed before output preview video, Executed before output preview image, Hook to interact with download file path.
+
+File ---> application\controllers\Estimate.php:
+   95:      $filename = hooks()->apply_filters('customers_area_download_estimate_filename', mb_strtoupper(slug_it($estimate_number), 'UTF-8') . '.pdf', $estimate);
+   112:      $data['estimate']                      = hooks()->apply_filters('estimate_html_pdf_data', $estimate);
+   121:      hooks()->do_action('estimate_html_viewed', $id);
+VI: Hook can thiệp vào customers area download estimate filename, Hook can thiệp vào estimate html pdf data, Hook can thiệp vào estimate html viewed.
+EN: Hook to interact with customers area download estimate filename, Hook to interact with estimate html pdf data, Hook to interact with estimate html viewed.
+
+File ---> application\controllers\Forms.php:
+   182:      hooks()->do_action('estimate_requests_created', [...]);
+   246:      hooks()->do_action('estimate_request_form_submitted', [...]);
+   463:      $task_data = hooks()->apply_filters('before_add_task', $task_data);
+   479:      hooks()->do_action('after_add_task', $task_id);
+   505:      hooks()->do_action('lead_created', [...]);
+   581:      hooks()->do_action('web_to_lead_form_submitted', [...]);
+   681:      hooks()->do_action('view_public_ticket', $ticket);
+   721:      $navigationDisabled = hooks()->apply_filters('disable_navigation_on_public_ticket_view', true);
+   747:      $form = hooks()->apply_filters('ticket_form_settings', $form);
+   805:      $post_data = hooks()->apply_filters('ticket_external_form_insert_data', $post_data);
+   813:      hooks()->do_action('ticket_form_submitted', [...]);
+VI: Hook can thiệp vào estimate requests created, Hook can thiệp vào estimate request form submitted, Thực hiện trước khi add task, Thực hiện sau khi add task, Hook can thiệp vào lead created, Hook can thiệp vào web to lead form submitted, Hook can thiệp vào view public ticket, Hook can thiệp vào disable navigation on public ticket view, Hook can thiệp vào ticket form settings, Hook can thiệp vào ticket external form insert data, Hook can thiệp vào ticket form submitted.
+EN: Hook to interact with estimate requests created, Hook to interact with estimate request form submitted, Executed before add task, Executed after add task, Hook to interact with lead created, Hook to interact with web to lead form submitted, Hook to interact with view public ticket, Hook to interact with disable navigation on public ticket view, Hook to interact with ticket form settings, Hook to interact with ticket external form insert data, Hook to interact with ticket form submitted.
+
+File ---> application\controllers\Invoice.php:
+   12:      $invoice = hooks()->apply_filters('before_client_view_invoice', $invoice);
+   72:      $data['invoice']   = hooks()->apply_filters('invoice_html_pdf_data', $invoice);
+   77:      hooks()->do_action('invoice_html_viewed', $id);
+VI: Thực hiện trước khi client view invoice, Hook can thiệp vào invoice html pdf data, Hook can thiệp vào invoice html viewed.
+EN: Executed before client view invoice, Hook to interact with invoice html pdf data, Hook to interact with invoice html viewed.
+
+File ---> application\controllers\Knowledge_base.php:
+   15:      hooks()->do_action('customers_area_knowledge_base_construct');
+VI: Hook can thiệp vào customers area knowledge base construct.
+EN: Hook to interact with customers area knowledge base construct.
+
+File ---> application\controllers\Migration.php:
+   212:      $tables = hooks()->apply_filters('migration_tables_to_replace_old_links', $tables);
+VI: Hook can thiệp vào migration tables to replace old links.
+EN: Hook to interact with migration tables to replace old links.
+
+File ---> application\controllers\Proposal.php:
+   127:      $data['proposal']  = hooks()->apply_filters('proposal_html_pdf_data', $proposal);
+   139:      hooks()->do_action('proposal_html_viewed', $id);
+   141:      $data = hooks()->apply_filters('proposal_customers_area_view_data', $data);
+VI: Hook can thiệp vào proposal html pdf data, Hook can thiệp vào proposal html viewed, Hook can thiệp vào proposal customers area view data.
+EN: Hook to interact with proposal html pdf data, Hook to interact with proposal html viewed, Hook to interact with proposal customers area view data.
+
+File ---> application\controllers\Subscription.php:
+   141:      $sessionData = hooks()->apply_filters('stripe_subscription_session_data', $sessionData, $subscription_hash);
+VI: Hook can thiệp vào stripe subscription session data.
+EN: Hook to interact with stripe subscription session data.
+
+File ---> application\controllers\Verification.php:
+   51:      hooks()->do_action('contact_email_verified_but_requires_admin_confirmation', $contact);
+   55:      hooks()->do_action('contact_email_verified', $contact);
+VI: Hook can thiệp vào contact email verified but requires admin confirmation, Hook can thiệp vào contact email verified.
+EN: Hook to interact with contact email verified but requires admin confirmation, Hook to interact with contact email verified.
+
+File ---> application\controllers\admin\Authentication.php:
+   28:      hooks()->do_action('admin_auth_init');
+   87:      hooks()->do_action('after_staff_login');
+   121:      hooks()->do_action('after_staff_login');
+   132:      hooks()->do_action('after_staff_login');
+   180:      hooks()->do_action('before_user_reset_password', [...]);
+   188:      hooks()->do_action('after_user_reset_password', [...]);
+   237:      hooks()->do_action('after_user_logout');
+VI: Khởi tạo admin auth init, Thực hiện sau khi staff login, Thực hiện trước khi user reset password, Thực hiện sau khi user reset password, Thực hiện sau khi user logout.
+EN: Initialization of admin auth init, Executed after staff login, Executed before user reset password, Executed after user reset password, Executed after user logout.
+
+File ---> application\controllers\admin\Auto_update.php:
+   14:      hooks()->do_action('before_perform_update', $latest_version);
+VI: Thực hiện trước khi perform update.
+EN: Executed before perform update.
+
+File ---> application\controllers\admin\Clients.php:
+   157:      $data['vault_entries'] = hooks()->apply_filters('check_vault_entries_visibility', $this->clients_model->get_vault_entries($id));
+   648:      hooks()->do_action('after_contact_login');
+   876:      hooks()->do_action('before_do_bulk_action_for_customers');
+VI: Hook can thiệp vào check vault entries visibility, Thực hiện sau khi contact login, Thực hiện trước khi do bulk action for customers.
+EN: Hook to interact with check vault entries visibility, Executed after contact login, Executed before do bulk action for customers.
+
+File ---> application\controllers\admin\Dashboard.php:
+   55:      $data['projects_activity'] = $this->projects_model->get_activity('', hooks()->apply_filters('projects_activity_dashboard_limit', 20));
+   86:      $data = hooks()->apply_filters('before_dashboard_render', $data);
+VI: Hook can thiệp vào projects activity dashboard limit, Thực hiện trước khi dashboard render.
+EN: Hook to interact with projects activity dashboard limit, Executed before dashboard render.
+
+File ---> application\controllers\admin\Emails.php:
+   240:      hooks()->do_action('before_send_test_smtp_email');
+   272:      hooks()->do_action('smtp_test_email_success');
+   276:      hooks()->do_action('smtp_test_email_failed');
+VI: Thực hiện trước khi send test smtp email, Hook can thiệp vào smtp test email success, Hook can thiệp vào smtp test email failed.
+EN: Executed before send test smtp email, Hook to interact with smtp test email success, Hook to interact with smtp test email failed.
+
+File ---> application\controllers\admin\Estimates.php:
+   541:      $fileNameHookData = hooks()->apply_filters('estimate_file_name_admin_area', [...]);
+VI: Hook can thiệp vào estimate file name admin area.
+EN: Hook to interact with estimate file name admin area.
+
+File ---> application\controllers\admin\Expenses.php:
+   164:      hooks()->do_action('before_do_bulk_action_for_expenses');
+VI: Thực hiện trước khi do bulk action for expenses.
+EN: Executed before do bulk action for expenses.
+
+File ---> application\controllers\admin\Invoice_items.php:
+   172:      hooks()->do_action('before_do_bulk_action_for_items');
+VI: Thực hiện trước khi do bulk action for items.
+EN: Executed before do bulk action for items.
+
+File ---> application\controllers\admin\Invoices.php:
+   309:      if (hooks()->apply_filters('validate_invoice_number', true)) {;
+   341:      if (hooks()->apply_filters('validate_invoice_number', true) && isset($invoice_data['number'])) {;
+   682:      $invoice        = hooks()->apply_filters('before_admin_view_invoice_pdf', $invoice);
+VI: Hook can thiệp vào validate invoice number, Thực hiện trước khi admin view invoice pdf.
+EN: Hook to interact with validate invoice number, Executed before admin view invoice pdf.
+
+File ---> application\controllers\admin\Leads.php:
+   179:      $data = hooks()->apply_filters('lead_view_data', $data);
+   605:      hooks()->do_action('lead_converted_to_customer', ['lead_id' => $data['leadid'], 'customer_id' => $id]);
+   813:      $fields = hooks()->apply_filters('lead_form_available_database_fields', $fields);
+   1269:      hooks()->do_action('before_do_bulk_action_for_leads');
+VI: Hook can thiệp vào lead view data, Hook can thiệp vào lead converted to customer, Hook can thiệp vào lead form available database fields, Thực hiện trước khi do bulk action for leads.
+EN: Hook to interact with lead view data, Hook to interact with lead converted to customer, Hook to interact with lead form available database fields, Executed before do bulk action for leads.
+
+File ---> application\controllers\admin\Misc.php:
+   507:      hooks()->do_action('before_change_maximum_number_of_digits_to_decimal_fields');
+   550:      hooks()->do_action('before_change_decimal_places');
+VI: Thực hiện trước khi change maximum number of digits to decimal fields, Thực hiện trước khi change decimal places.
+EN: Executed before change maximum number of digits to decimal fields, Executed before change decimal places.
+
+File ---> application\controllers\admin\Newsfeed.php:
+   371:      hooks()->do_action('before_pin_post', $id);
+   381:      hooks()->do_action('before_unpin_post', $id);
+   458:      hooks()->do_action('before_delete_post', $postid);
+VI: Thực hiện trước khi pin post, Thực hiện trước khi unpin post, Thực hiện trước khi delete post.
+EN: Executed before pin post, Executed before unpin post, Executed before delete post.
+
+File ---> application\controllers\admin\Projects.php:
+   269:      $__total_where_tasks = hooks()->apply_filters('admin_total_project_tasks_where', $__total_where_tasks, $id);
+   353:      $data['default_tickets_list_statuses'] = hooks()->apply_filters('default_tickets_list_statuses', [1, 2, 4]);
+   736:      hooks()->do_action('before_do_bulk_action_for_project_files');
+VI: Hook can thiệp vào admin total project tasks where, Hook can thiệp vào default tickets list statuses, Thực hiện trước khi do bulk action for project files.
+EN: Hook to interact with admin total project tasks where, Hook to interact with default tickets list statuses, Executed before do bulk action for project files.
+
+File ---> application\controllers\admin\Proposals.php:
+   358:      hooks()->do_action('proposal_converted_to_estimate', ['proposal_id' => $id, 'estimate_id' => $estimate_id]);
+   390:      hooks()->do_action('after_proposal_converted_to_invoice', ['proposal_id' => $id, 'invoice_id' => $invoice_id]);
+VI: Hook can thiệp vào proposal converted to estimate, Thực hiện sau khi proposal converted to invoice.
+EN: Hook to interact with proposal converted to estimate, Executed after proposal converted to invoice.
+
+File ---> application\controllers\admin\Settings.php:
+   34:      hooks()->do_action('before_update_system_options', $post_data);
+   193:      hooks()->do_action('before_remove_company_logo');
+   215:      hooks()->do_action('before_remove_favicon');
+VI: Thực hiện trước khi update system options, Thực hiện trước khi remove company logo, Thực hiện trước khi remove favicon.
+EN: Executed before update system options, Executed before remove company logo, Executed before remove favicon.
+
+File ---> application\controllers\admin\Staff.php:
+   31:      hooks()->do_action('staff_member_edit_view_profile', $id);
+   123:      hooks()->do_action('before_save_dashboard_widgets_order');
+   136:      hooks()->do_action('before_save_dashboard_widgets_visibility');
+   152:      hooks()->do_action('before_save_hidden_table_columns');
+   161:      hooks()->do_action('before_staff_change_language', $lang);
+   209:      hooks()->do_action('edit_logged_in_staff_profile');
+   247:      hooks()->do_action('before_remove_staff_profile_image');
+   289:      hooks()->do_action('staff_profile_access', $id);
+   443:      hooks()->do_action('before_save_completed_checklist_visibility');
+VI: Hook can thiệp vào staff member edit view profile, Thực hiện trước khi save dashboard widgets order, Thực hiện trước khi save dashboard widgets visibility, Thực hiện trước khi save hidden table columns, Thực hiện trước khi staff change language, Hook can thiệp vào edit logged in staff profile, Thực hiện trước khi remove staff profile image, Hook can thiệp vào staff profile access, Thực hiện trước khi save completed checklist visibility.
+EN: Hook to interact with staff member edit view profile, Executed before save dashboard widgets order, Executed before save dashboard widgets visibility, Executed before save hidden table columns, Executed before staff change language, Hook to interact with edit logged in staff profile, Executed before remove staff profile image, Hook to interact with staff profile access, Executed before save completed checklist visibility.
+
+File ---> application\controllers\admin\Tasks.php:
+   146:      $data = hooks()->apply_filters('before_update_task', [...]);
+   153:      hooks()->do_action('after_update_task', $id);
+   580:      hooks()->do_action('task_checklist_item_finished', $listid);
+   882:      $data = hooks()->apply_filters('before_update_task', ['priority' => $priority_id], $id);
+   889:      hooks()->do_action('after_update_task', $id);
+   931:      $data = hooks()->apply_filters('before_update_task', [...]);
+   938:      hooks()->do_action('after_update_task', $task_id);
+   1106:      $data = hooks()->apply_filters('before_update_task', [...]);
+   1112:      hooks()->do_action('after_update_task', $id);
+   1118:      hooks()->do_action('before_do_bulk_action_for_tasks');
+VI: Thực hiện trước khi update task, Thực hiện sau khi update task, Hook can thiệp vào task checklist item finished, Thực hiện trước khi do bulk action for tasks.
+EN: Executed before update task, Executed after update task, Hook to interact with task checklist item finished, Executed before do bulk action for tasks.
+
+File ---> application\controllers\admin\Tickets.php:
+   62:      $data['default_tickets_list_statuses'] = hooks()->apply_filters('default_tickets_list_statuses', [1, 2, 4]);
+   729:      hooks()->do_action('before_do_bulk_action_for_tickets');
+VI: Hook can thiệp vào default tickets list statuses, Thực hiện trước khi do bulk action for tickets.
+EN: Hook to interact with default tickets list statuses, Executed before do bulk action for tickets.
+
+File ---> application\controllers\admin\Utilities.php:
+   272:      $opts      = hooks()->apply_filters('before_init_media', $opts);
+   365:      $data['bulk_pdf_export_available_features'] = hooks()->apply_filters (...);
+VI: Thực hiện trước khi init media, Hook này dùng để can thiệp vào quy trình thực thi..
+EN: Executed before init media, This hook is used to intercept the execution flow..
+
+File ---> application\controllers\gateways\Stripe.php:
+   221:      hooks()->do_action('customer_subscribed_to_subscription', $dbSubscription);
+VI: Hook can thiệp vào customer subscribed to subscription.
+EN: Hook to interact with customer subscribed to subscription.
+
+File ---> application\core\AdminController.php:
+   13:      hooks()->do_action('pre_upgrade_database');
+   21:      hooks()->do_action('pre_admin_init');
+   73:      hooks()->do_action('admin_init');
+   90:      $vars = hooks()->apply_filters('admin_area_auto_loaded_vars', $vars);
+VI: Hook can thiệp vào pre upgrade database, Khởi tạo pre admin init, Khởi tạo admin init, Hook can thiệp vào admin area auto loaded vars.
+EN: Hook to interact with pre upgrade database, Initialization of pre admin init, Initialization of admin init, Hook to interact with admin area auto loaded vars.
+
+File ---> application\core\App_Controller.php:
+   98:      hooks()->do_action('app_init');
+VI: Khởi tạo app init.
+EN: Initialization of app init.
+
+File ---> application\core\App_Loader.php:
+   22:      $hook_data = hooks()->apply_filters('app_view_data', ['data' => $_ci_vars, 'path' => $_ci_view]);
+VI: Hook can thiệp vào app view data.
+EN: Hook to interact with app view data.
+
+File ---> application\core\App_Model.php:
+   22:      hooks()->do_action('model_init', $this);
+VI: Khởi tạo model init.
+EN: Initialization of model init.
+
+File ---> application\core\App_Security.php:
+   19:      $exclude_uris = hooks()->apply_filters (...);
+VI: Hook này dùng để can thiệp vào quy trình thực thi..
+EN: This hook is used to intercept the execution flow..
+
+File ---> application\helpers\admin_helper.php:
+   10:      hooks()->do_action('app_admin_head');
+   25:      hooks()->do_action('app_admin_footer');
+   155:      return hooks()->apply_filters('staff_can', $retVal, $capability, $feature, $staff_id);
+   161:      return hooks()->apply_filters('staff_can', true, $capability, $feature, $staff_id);
+   165:      return hooks()->apply_filters('staff_can', false, $capability, $feature, $staff_id);
+   238:      hooks()->do_action('after_load_admin_language', $language);
+   337:      $classes = hooks()->apply_filters('admin_body_class', $classes);
+VI: Hook can thiệp vào app admin head, Hook can thiệp vào app admin footer, Hook can thiệp vào staff can, Thực hiện sau khi load admin language, Hook can thiệp vào admin body class.
+EN: Hook to interact with app admin head, Hook to interact with app admin footer, Hook to interact with staff can, Executed after load admin language, Hook to interact with admin body class.
+
+File ---> application\helpers\assets_helper.php:
+   10:      hooks()->do_action('app_admin_assets');
+   16:      hooks()->do_action('app_client_assets');
+   18:      hooks()->do_action('app_client_assets_added');
+   98:      hooks()->do_action('app_admin_assets_added');
+VI: Hook can thiệp vào app admin assets, Hook can thiệp vào app client assets, Hook can thiệp vào app client assets added, Hook can thiệp vào app admin assets added.
+EN: Hook to interact with app admin assets, Hook to interact with app client assets, Hook to interact with app client assets added, Hook to interact with app admin assets added.
+
+File ---> application\helpers\clients_helper.php:
+   83:      return hooks()->apply_filters('is_client_id_used', $total > 0 ? true : false, $id);
+   94:      return hooks()->apply_filters('customer_has_subscriptions', total_rows(db_prefix() . 'subscriptions', ['clientid' => $id]) > 0);
+   167:      return hooks()->apply_filters('client_filtered_visible_tabs', $newTabs);
+   437:      return hooks()->apply_filters('is_client_using_multiple_currencies', $retVal, [...]);
+   776:      hooks()->do_action('after_load_client_language', $language);
+   807:      return hooks()->apply_filters('customer_have_transactions', $total > 0, $id);
+   850:      return hooks()->apply_filters('get_contact_permissions', $permissions);
+   1242:      return hooks()->apply_filters('all_client_attachments', $attachments, $id);
+   1363:      return hooks()->apply_filters('automatic_calling_codes_enabled', true);
+VI: Hook can thiệp vào is client id used, Hook can thiệp vào customer has subscriptions, Hook can thiệp vào client filtered visible tabs, Hook can thiệp vào is client using multiple currencies, Thực hiện sau khi load client language, Hook can thiệp vào customer have transactions, Hook can thiệp vào get contact permissions, Hook can thiệp vào all client attachments, Hook can thiệp vào automatic calling codes enabled.
+EN: Hook to interact with is client id used, Hook to interact with customer has subscriptions, Hook to interact with client filtered visible tabs, Hook to interact with is client using multiple currencies, Executed after load client language, Hook to interact with customer have transactions, Hook to interact with get contact permissions, Hook to interact with all client attachments, Hook to interact with automatic calling codes enabled.
+
+File ---> application\helpers\core_hooks_helper.php:
+   88:      $link = hooks()->apply_filters (...);
+VI: Hook này dùng để can thiệp vào quy trình thực thi..
+EN: This hook is used to intercept the execution flow..
+
+File ---> application\helpers\countries_helper.php:
+   14:      return hooks()->apply_filters('all_countries', $countries);
+   35:      return hooks()->apply_filters('get_country', $country);
+VI: Hook can thiệp vào all countries, Hook can thiệp vào get country.
+EN: Hook to interact with all countries, Hook to interact with get country.
+
+File ---> application\helpers\credit_notes_helper.php:
+   52:      return hooks()->apply_filters('invoices_statuses_available_for_credits', [...]);
+   108:      return hooks()->apply_filters('format_credit_note_number', $number, [...]);
+VI: Hook can thiệp vào invoices statuses available for credits, Hook can thiệp vào format credit note number.
+EN: Hook to interact with invoices statuses available for credits, Hook to interact with format credit note number.
+
+File ---> application\helpers\custom_fields_helper.php:
+   68:      && (!defined('CLIENTS_AREA') || hooks()->apply_filters('show_custom_fields_edit_link_on_clients_area', false))) {;
+   498:      $whereSQL = hooks()->apply_filters('items_custom_fields_for_table_sql', $whereSQL);
+   508:      $where = hooks()->apply_filters('custom_fields_where_items_table_add_edit_preview', []);
+VI: Hook can thiệp vào show custom fields edit link on clients area, Hook can thiệp vào items custom fields for table sql, Hook can thiệp vào custom fields where items table add edit preview.
+EN: Hook to interact with show custom fields edit link on clients area, Hook to interact with items custom fields for table sql, Hook to interact with custom fields where items table add edit preview.
+
+File ---> application\helpers\database_helper.php:
+   94:      $data         = hooks()->apply_filters('notification_data', $data);
+   108:      hooks()->do_action('notification_created', $notification_id);
+VI: Hook can thiệp vào notification data, Hook can thiệp vào notification created.
+EN: Hook to interact with notification data, Hook to interact with notification created.
+
+File ---> application\helpers\datatables_helper.php:
+   82:      $sOrder .= hooks()->apply_filters('datatables_query_order_column', 'CAST(' . $columnName . ' as DECIMAL(10, ' . get_decimal_places() . '))', $sTable);
+   84:      $sOrder .= hooks()->apply_filters('datatables_query_order_column', 'CAST(' . $columnName . ' as DATE)', $sTable);
+   86:      $sOrder .= hooks()->apply_filters('datatables_query_order_column', 'CAST(' . $columnName . ' as DATETIME)', $sTable);
+   88:      $sOrder .= hooks()->apply_filters('datatables_query_order_column', $columnName, $sTable);
+   134:      $useMatchForCustomFieldsTableSearch = hooks()->apply_filters('use_match_for_custom_fields_table_search', 'false');
+   257:      $rResult = hooks()->apply_filters (...);
+   310:      return hooks()->apply_filters('null_columns_sort_as_last', $columns);
+   407:      return hooks()->apply_filters('datatables_language_array', $lang);
+VI: Hook can thiệp vào datatables query order column, Hook can thiệp vào use match for custom fields table search, Hook này dùng để can thiệp vào quy trình thực thi., Hook can thiệp vào null columns sort as last, Hook can thiệp vào datatables language array.
+EN: Hook to interact with datatables query order column, Hook to interact with use match for custom fields table search, This hook is used to intercept the execution flow., Hook to interact with null columns sort as last, Hook to interact with datatables language array.
+
+File ---> application\helpers\deprecated_helper.php:
+   14:      hooks()->do_action('deprecated_function_run', $function, $replacement, $version);
+   23:      if (ENVIRONMENT != 'production' && hooks()->apply_filters('deprecated_function_trigger_error', true)) {;
+   36:      hooks()->do_action('deprecated_hook_run', $hook, $replacement, $version, $message);
+   43:      if (ENVIRONMENT != 'production' && hooks()->apply_filters('deprecated_hook_trigger_error', true)) {;
+   141:      return hooks()->apply_filters('project_status_color_class', $class, $id);
+   171:      $hook_data = hooks()->apply_filters('project_status_label', ['id' => $id, 'label' => $label]);
+   697:      $rate = hooks()->apply_filters (...);
+   740:      $itemHTML .= hooks()->apply_filters('item_tax_table_row', $item_tax, [...]);
+   748:      $itemHTML .= hooks()->apply_filters('item_tax_table_row', '0%', [...]);
+   764:      $item_amount_with_quantity = hooks()->apply_filters (...);
+   805:      return hooks()->apply_filters('before_return_table_items_html_and_taxes', $result, [...]);
+   916:      return hooks()->apply_filters('money_after_format_with_currency', $formattedWithCurrency, [...]);
+   1058:      return hooks()->apply_filters('staff_permissions_conditions', [...]);
+VI: Hook can thiệp vào deprecated function run, Hook can thiệp vào deprecated function trigger error, Hook can thiệp vào deprecated hook run, Hook can thiệp vào deprecated hook trigger error, Hook can thiệp vào project status color class, Hook can thiệp vào project status label, Hook này dùng để can thiệp vào quy trình thực thi., Hook can thiệp vào item tax table row, Thực hiện trước khi return table items html and taxes, Hook can thiệp vào money after format with currency, Hook can thiệp vào staff permissions conditions.
+EN: Hook to interact with deprecated function run, Hook to interact with deprecated function trigger error, Hook to interact with deprecated hook run, Hook to interact with deprecated hook trigger error, Hook to interact with project status color class, Hook to interact with project status label, This hook is used to intercept the execution flow., Hook to interact with item tax table row, Executed before return table items html and taxes, Hook to interact with money after format with currency, Hook to interact with staff permissions conditions.
+
+File ---> application\helpers\estimates_helper.php:
+   116:      return hooks()->apply_filters('estimate_status_pdf_color', $statusColor, $status_id);
+   165:      return hooks()->apply_filters('estimate_status_label', $status, $id);
+   202:      return hooks()->apply_filters('estimate_status_color_class', $class, $id);
+   246:      return hooks()->apply_filters('format_estimate_number', $number, [...]);
+VI: Hook can thiệp vào estimate status pdf color, Hook can thiệp vào estimate status label, Hook can thiệp vào estimate status color class, Hook can thiệp vào format estimate number.
+EN: Hook to interact with estimate status pdf color, Hook to interact with estimate status label, Hook to interact with estimate status color class, Hook to interact with format estimate number.
+
+File ---> application\helpers\files_helper.php:
+   123:      return hooks()->apply_filters (...);
+   488:      $extensions = hooks()->apply_filters('markdown_extensions', $extensions);
+   507:      $markDownSafeMode = hooks()->apply_filters('mark_down_safe_mode', 'true');
+VI: Hook này dùng để can thiệp vào quy trình thực thi., Hook can thiệp vào markdown extensions, Hook can thiệp vào mark down safe mode.
+EN: This hook is used to intercept the execution flow., Hook to interact with markdown extensions, Hook to interact with mark down safe mode.
+
+File ---> application\helpers\func_helper.php:
+   133:      return hooks()->apply_filters('sec2qty_formatted', $qty, $sec);
+VI: Hook can thiệp vào sec2qty formatted.
+EN: Hook to interact with sec2qty formatted.
+
+File ---> application\helpers\general_helper.php:
+   42:      hooks()->do_action('before_generate_short_link', $data);
+   85:      hooks()->do_action('before_archive_short_link', $link);
+   318:      $format = hooks()->apply_filters('get_current_date_format', $format, $php);
+   527:      return hooks()->apply_filters('available_date_formats', $date_formats);
+   579:      $hook_data = hooks()->apply_filters('before_get_language_text', ['line' => $line, 'label' => $label]);
+   598:      $hook_data = hooks()->apply_filters('after_get_language_text', ['line' => $line, 'formatted_line' => $_line]);
+   646:      return hooks()->apply_filters('after_format_date', $formatted, $date);
+   691:      return hooks()->apply_filters('after_format_datetime', $date, ['original' => $original, 'is_timesheet' => $is_timesheet]);
+   711:      $date = hooks()->apply_filters('before_sql_date_format', $date, [...]);
+   728:      return hooks()->apply_filters (...);
+   755:      return hooks()->apply_filters('to_sql_date_formatted', $d);
+   806:      return hooks()->apply_filters('before_get_locales', $locales);
+   819:      return hooks()->apply_filters('before_get_locale', $locale);
+   842:      hooks()->do_action('before_pusher_trigger_notification', $users);
+   965:      $regex = hooks()->apply_filters('app_happy_text_regex', '\b(congratulations!?|congrats!?|happy!?|feel happy!?|awesome!?|yay!?)\b');
+   968:      $app_happy_color = hooks()->apply_filters('app_happy_text_color', 'rgb(255, 59, 0)');
+VI: Thực hiện trước khi generate short link, Thực hiện trước khi archive short link, Hook can thiệp vào get current date format, Hook can thiệp vào available date formats, Thực hiện trước khi get language text, Thực hiện sau khi get language text, Thực hiện sau khi format date, Thực hiện sau khi format datetime, Thực hiện trước khi sql date format, Hook này dùng để can thiệp vào quy trình thực thi., Hook can thiệp vào to sql date formatted, Thực hiện trước khi get locales, Thực hiện trước khi get locale, Thực hiện trước khi pusher trigger notification, Hook can thiệp vào app happy text regex, Hook can thiệp vào app happy text color.
+EN: Executed before generate short link, Executed before archive short link, Hook to interact with get current date format, Hook to interact with available date formats, Executed before get language text, Executed after get language text, Executed after format date, Executed after format datetime, Executed before sql date format, This hook is used to intercept the execution flow., Hook to interact with to sql date formatted, Executed before get locales, Executed before get locale, Executed before pusher trigger notification, Hook to interact with app happy text regex, Hook to interact with app happy text color.
+
+File ---> application\helpers\invoices_helper.php:
+   293:      return hooks()->apply_filters('invoice_status_pdf_color', $statusColor, $status_id);
+   390:      hooks()->do_action('invoice_status_changed', ['invoice_id' => $id, 'status' => $status]);
+   467:      return hooks()->apply_filters('format_invoice_number', $number, [...]);
+VI: Hook can thiệp vào invoice status pdf color, Hook can thiệp vào invoice status changed, Hook can thiệp vào format invoice number.
+EN: Hook to interact with invoice status pdf color, Hook to interact with invoice status changed, Hook to interact with format invoice number.
+
+File ---> application\helpers\misc_helper.php:
+   68:      return hooks()->apply_filters('system_favourite_colors', $colors);
+   123:      return hooks()->apply_filters('acceptance_info_array', $data, $empty);
+   203:      return hooks()->apply_filters('alert_class', $alert_class);
+   428:      return hooks()->apply_filters('scheduled_email_default_date', date('Y-m-d 08:00', strtotime('+1 day')));
+VI: Hook can thiệp vào system favourite colors, Hook can thiệp vào acceptance info array, Hook can thiệp vào alert class, Hook can thiệp vào scheduled email default date.
+EN: Hook to interact with system favourite colors, Hook to interact with acceptance info array, Hook to interact with alert class, Hook to interact with scheduled email default date.
+
+File ---> application\helpers\modules_helper.php:
+   290:      *  When an action hook is deprecated, the hooks()->do_action() call is replaced with hooks()->do_action_deprecated() ...);
+   293:      * @param  array   $args         Array of additional function arguments to be passed to hooks()->do_action().;
+   306:      hooks()->do_action_ref_array($tag, $args);
+   311:      *  When a filter hook is deprecated, the hooks()->apply_filters() call is replaced with hooks()->apply_filters_deprecated() ...);
+   313:      *  Note: the value and extra arguments passed to the original hooks()->apply_filters() call must be passed here to $args as an array. For example:;
+   319:      * @param  array   $args         Array of additional function arguments to be passed to hooks()->apply_filters().;
+   332:      return hooks()->apply_filters_ref_array($tag, $args);
+VI: Hook này dùng để can thiệp vào quy trình thực thi..
+EN: This hook is used to intercept the execution flow..
+
+File ---> application\helpers\payment_gateways_helper.php:
+   13:      $width  = hooks()->apply_filters('payment_gateway_logo_width', 'auto');
+   14:      $height = hooks()->apply_filters('payment_gateway_logo_height', '34px');
+   32:      $logoURL = hooks()->apply_filters('payment_gateway_logo_url', $logoURL);
+   81:      $html .= hooks()->apply_filters('payment_gateway_head', '') . PHP_EOL;
+   104:      $html .= hooks()->apply_filters('payment_gateway_scripts', '') . PHP_EOL;
+   114:      $html = hooks()->apply_filters('payment_gateway_footer', '') . PHP_EOL;
+VI: Hook can thiệp vào payment gateway logo width, Hook can thiệp vào payment gateway logo height, Hook can thiệp vào payment gateway logo url, Hook can thiệp vào payment gateway head, Hook can thiệp vào payment gateway scripts, Hook can thiệp vào payment gateway footer.
+EN: Hook to interact with payment gateway logo width, Hook to interact with payment gateway logo height, Hook to interact with payment gateway logo url, Hook to interact with payment gateway head, Hook to interact with payment gateway scripts, Hook to interact with payment gateway footer.
+
+File ---> application\helpers\pdf_helper.php:
+   34:      hooks()->do_action('load_pdf_language', ['language' => $language]);
+   70:      return hooks()->apply_filters('pdf_logo_url', $logoImage);
+   99:      return hooks()->apply_filters('pdf_fonts_list', $fontlist);
+   140:      return hooks()->apply_filters('pdf_format_array', $data, $option_name);
+   232:      $path = hooks()->apply_filters("{$type}_pdf_class_path", $path, ...$params);
+VI: Hook can thiệp vào load pdf language, Hook can thiệp vào pdf logo url, Hook can thiệp vào pdf fonts list, Hook can thiệp vào pdf format array, Hook này dùng để can thiệp vào quy trình thực thi..
+EN: Hook to interact with load pdf language, Hook to interact with pdf logo url, Hook to interact with pdf fonts list, Hook to interact with pdf format array, This hook is used to intercept the execution flow..
+
+File ---> application\helpers\projects_helper.php:
+   232:      return hooks()->apply_filters('project_filtered_visible_tabs', $newTabs);
+VI: Hook can thiệp vào project filtered visible tabs.
+EN: Hook to interact with project filtered visible tabs.
+
+File ---> application\helpers\proposals_helper.php:
+   154:      return hooks()->apply_filters('proposal_number_format', $format, $id);
+VI: Hook can thiệp vào proposal number format.
+EN: Hook to interact with proposal number format.
+
+File ---> application\helpers\relation_helper.php:
+   145:      $data = hooks()->apply_filters('get_relation_data', $data, compact('type', 'rel_id', 'extra'));
+   331:      return hooks()->apply_filters('relation_values', [...]);
+   413:      $_data = hooks()->apply_filters('init_relation_options', $_data, compact('data', 'type', 'rel_id'));
+VI: Hook can thiệp vào get relation data, Hook can thiệp vào relation values, Khởi tạo init relation options.
+EN: Hook to interact with get relation data, Hook to interact with relation values, Initialization of init relation options.
+
+File ---> application\helpers\sales_helper.php:
+   73:      return hooks()->apply_filters('number_after_format', $formatted, [...]);
+   154:      return hooks()->apply_filters('app_format_money', $formattedWithCurrency, [...]);
+   200:      return hooks()->apply_filters('ajax_on_total_items', 200);
+   295:      return hooks()->apply_filters('info_format_custom_field', $result, [...]);
+   365:      $companyName = hooks()->apply_filters('customer_info_format_company_name', $companyName, $filterData);
+   443:      return hooks()->apply_filters('customer_info_text', $format, $filterData);
+   518:      return hooks()->apply_filters('proposal_info_text', $format, ['proposal' => $proposal, 'for' => $for]);
+   557:      return hooks()->apply_filters('organization_info_text', $format);
+   569:      return hooks()->apply_filters('app_decimal_places', 2);
+   900:      $class = hooks()->apply_filters('items_table_class', $class, $transaction, $type, $for, $admin_preview);
+   928:      return hooks()->apply_filters('sales_number_format', $number, [...]);
+VI: Hook can thiệp vào number after format, Hook can thiệp vào app format money, Hook can thiệp vào ajax on total items, Hook can thiệp vào info format custom field, Hook can thiệp vào customer info format company name, Hook can thiệp vào customer info text, Hook can thiệp vào proposal info text, Hook can thiệp vào organization info text, Hook can thiệp vào app decimal places, Hook can thiệp vào items table class, Hook can thiệp vào sales number format.
+EN: Hook to interact with number after format, Hook to interact with app format money, Hook to interact with ajax on total items, Hook to interact with info format custom field, Hook to interact with customer info format company name, Hook to interact with customer info text, Hook to interact with proposal info text, Hook to interact with organization info text, Hook to interact with app decimal places, Hook to interact with items table class, Hook to interact with sales number format.
+
+File ---> application\helpers\sms_helper.php:
+   66:      $gateways = hooks()->apply_filters('sms_gateways', $gateways);
+VI: Hook can thiệp vào sms gateways.
+EN: Hook to interact with sms gateways.
+
+File ---> application\helpers\staff_helper.php:
+   178:      return hooks()->apply_filters('staff_permissions', $corePermissions, $data);
+   358:      $totalRecentSearches = hooks()->apply_filters('total_recent_searches', 5);
+VI: Hook can thiệp vào staff permissions, Hook can thiệp vào total recent searches.
+EN: Hook to interact with staff permissions, Hook to interact with total recent searches.
+
+File ---> application\helpers\subscriptions_helper.php:
+   95:      $new_invoice_data = hooks()->apply_filters('subscription_invoice_data', $new_invoice_data);
+   174:      return hooks()->apply_filters('subscription_statuses', [...]);
+VI: Hook can thiệp vào subscription invoice data, Hook can thiệp vào subscription statuses.
+EN: Hook to interact with subscription invoice data, Hook to interact with subscription statuses.
+
+File ---> application\helpers\tasks_helper.php:
+   19:      $status_name = e(hooks()->apply_filters('task_status_name', $status_name, $status));
+   43:      return hooks()->apply_filters('tasks_priorities', [...]);
+   323:      $table_data = hooks()->apply_filters('tasks_related_table_columns', $table_data);
+   555:      return hooks()->apply_filters('before_get_task_timer_round_off_options', $options);
+   567:      return hooks()->apply_filters('before_get_task_timer_round_off_times', [5, 10, 15, 20, 25, 30, 35, 40, 45]);
+VI: Hook can thiệp vào task status name, Hook can thiệp vào tasks priorities, Hook can thiệp vào tasks related table columns, Thực hiện trước khi get task timer round off options, Thực hiện trước khi get task timer round off times.
+EN: Hook to interact with task status name, Hook to interact with tasks priorities, Hook to interact with tasks related table columns, Executed before get task timer round off options, Executed before get task timer round off times.
+
+File ---> application\helpers\themes_helper.php:
+   136:      hooks()->do_action('app_customers_footer');
+   154:      hooks()->do_action('app_customers_head');
+   162:      return hooks()->apply_filters('customers_theme_assets_url', base_url('assets/themes/' . get_option('clients_default_theme'))) . '/';
+   171:      return hooks()->apply_filters('customers_theme_assets_path', 'assets/themes/' . get_option('clients_default_theme'));
+   180:      return hooks()->apply_filters('terms_and_condition_url', site_url('terms-and-conditions'));
+   188:      return hooks()->apply_filters('privacy_policy_url', site_url('privacy-policy'));
+VI: Hook can thiệp vào app customers footer, Hook can thiệp vào app customers head, Hook can thiệp vào customers theme assets url, Hook can thiệp vào customers theme assets path, Hook can thiệp vào terms and condition url, Hook can thiệp vào privacy policy url.
+EN: Hook to interact with app customers footer, Hook to interact with app customers head, Hook to interact with customers theme assets url, Hook to interact with customers theme assets path, Hook to interact with terms and condition url, Hook to interact with privacy policy url.
+
+File ---> application\helpers\tickets_helper.php:
+   137:      return hooks()->apply_filters('show_ticket_submitter_on_clients_area_table', $show_submitter_on_table);
+   168:      return hooks()->apply_filters('clients_area_tickets_summary', $statuses);
+   192:      $forbidden = hooks()->apply_filters('forbidden_ticket_statuses_to_change_in_clients_area', [3, 4]);
+VI: Hook can thiệp vào show ticket submitter on clients area table, Hook can thiệp vào clients area tickets summary, Hook can thiệp vào forbidden ticket statuses to change in clients area.
+EN: Hook to interact with show ticket submitter on clients area table, Hook to interact with clients area tickets summary, Hook to interact with forbidden ticket statuses to change in clients area.
+
+File ---> application\helpers\upload_helper.php:
+   13:      $hookData = hooks()->apply_filters('before_handle_estimate_request_attachment', [...]);
+   51:      hooks()->do_action('before_upload_estimate_request_attachment', $estimateRequestId);
+   121:      $hookData = hooks()->apply_filters('before_handle_newsfeed_post_attachments', [...]);
+   145:      hooks()->do_action('before_upload_newsfeed_attachment', $postid);
+   188:      $hookData = hooks()->apply_filters('before_handle_project_file_uploads', [...]);
+   205:      hooks()->do_action('before_upload_project_attachment', $project_id);
+   311:      $hookData = hooks()->apply_filters('before_handle_contract_attachment', [...]);
+   329:      hooks()->do_action('before_upload_contract_attachment', $id);
+   362:      $hookData = hooks()->apply_filters('before_handle_lead_attachment', [...]);
+   430:      $hookData = hooks()->apply_filters('before_handle_task_attachments_array', [...]);
+   500:      $hookData = hooks()->apply_filters('before_handle_sales_attachments', [...]);
+   584:      $hookData = hooks()->apply_filters('before_handle_client_attachment', [...]);
+   614:      hooks()->do_action('before_upload_client_attachment', $id);
+   667:      $hookData = hooks()->apply_filters('before_handle_expense_attachment', [...]);
+   684:      hooks()->do_action('before_upload_expense_attachment', $id);
+   713:      $hookData = hooks()->apply_filters('before_handle_ticket_attachment', [...]);
+   732:      hooks()->do_action('before_upload_ticket_attachment', $ticketid);
+   788:      $hookData = hooks()->apply_filters('before_handle_company_logo_upload', [...]);
+   797:      hooks()->do_action('before_upload_company_logo_attachment');
+   815:      hooks()->apply_filters('company_logo_upload_allowed_extensions', $allowed_extensions);
+   854:      $hookData = hooks()->apply_filters('before_handle_company_signature_upload', [...]);
+   866:      hooks()->do_action('before_upload_signature_image_attachment');
+   908:      $hookData = hooks()->apply_filters('before_handle_favicon_upload', [...]);
+   920:      hooks()->do_action('before_upload_favicon_attachment');
+   957:      $hookData = hooks()->apply_filters('before_handle_staff_profile_image_upload', [...]);
+   970:      hooks()->do_action('before_upload_staff_profile_image');
+   984:      $allowed_extensions = hooks()->apply_filters('staff_profile_image_upload_allowed_extensions', $allowed_extensions);
+   1002:      $config['width']          = hooks()->apply_filters('staff_profile_image_thumb_width', 320);
+   1003:      $config['height']         = hooks()->apply_filters('staff_profile_image_thumb_height', 320);
+   1011:      $config['width']          = hooks()->apply_filters('staff_profile_image_small_width', 96);
+   1012:      $config['height']         = hooks()->apply_filters('staff_profile_image_small_height', 96);
+   1037:      $hookData = hooks()->apply_filters('before_handle_contact_profile_image_upload', [...]);
+   1050:      hooks()->do_action('before_upload_contact_profile_image');
+   1068:      $allowed_extensions = hooks()->apply_filters('contact_profile_image_upload_allowed_extensions', $allowed_extensions);
+   1086:      $config['width']          = hooks()->apply_filters('contact_profile_image_thumb_width', 320);
+   1087:      $config['height']         = hooks()->apply_filters('contact_profile_image_thumb_height', 320);
+   1095:      $config['width']          = hooks()->apply_filters('contact_profile_image_small_width', 32);
+   1096:      $config['height']         = hooks()->apply_filters('contact_profile_image_small_height', 32);
+   1130:      $hookData = hooks()->apply_filters('before_handle_project_discussion_comment_attachment', [...]);
+   1145:      hooks()->do_action('before_upload_project_discussion_comment_attachment');
+   1357:      return hooks()->apply_filters('get_upload_path_by_type', $path, $type);
+VI: Thực hiện trước khi handle estimate request attachment, Thực hiện trước khi upload estimate request attachment, Thực hiện trước khi handle newsfeed post attachments, Thực hiện trước khi upload newsfeed attachment, Thực hiện trước khi handle project file uploads, Thực hiện trước khi upload project attachment, Thực hiện trước khi handle contract attachment, Thực hiện trước khi upload contract attachment, Thực hiện trước khi handle lead attachment, Thực hiện trước khi handle task attachments array, Thực hiện trước khi handle sales attachments, Thực hiện trước khi handle client attachment, Thực hiện trước khi upload client attachment, Thực hiện trước khi handle expense attachment, Thực hiện trước khi upload expense attachment, Thực hiện trước khi handle ticket attachment, Thực hiện trước khi upload ticket attachment, Thực hiện trước khi handle company logo upload, Thực hiện trước khi upload company logo attachment, Hook can thiệp vào company logo upload allowed extensions, Thực hiện trước khi handle company signature upload, Thực hiện trước khi upload signature image attachment, Thực hiện trước khi handle favicon upload, Thực hiện trước khi upload favicon attachment, Thực hiện trước khi handle staff profile image upload, Thực hiện trước khi upload staff profile image, Hook can thiệp vào staff profile image upload allowed extensions, Hook can thiệp vào staff profile image thumb width, Hook can thiệp vào staff profile image thumb height, Hook can thiệp vào staff profile image small width, Hook can thiệp vào staff profile image small height, Thực hiện trước khi handle contact profile image upload, Thực hiện trước khi upload contact profile image, Hook can thiệp vào contact profile image upload allowed extensions, Hook can thiệp vào contact profile image thumb width, Hook can thiệp vào contact profile image thumb height, Hook can thiệp vào contact profile image small width, Hook can thiệp vào contact profile image small height, Thực hiện trước khi handle project discussion comment attachment, Thực hiện trước khi upload project discussion comment attachment, Hook can thiệp vào get upload path by type.
+EN: Executed before handle estimate request attachment, Executed before upload estimate request attachment, Executed before handle newsfeed post attachments, Executed before upload newsfeed attachment, Executed before handle project file uploads, Executed before upload project attachment, Executed before handle contract attachment, Executed before upload contract attachment, Executed before handle lead attachment, Executed before handle task attachments array, Executed before handle sales attachments, Executed before handle client attachment, Executed before upload client attachment, Executed before handle expense attachment, Executed before upload expense attachment, Executed before handle ticket attachment, Executed before upload ticket attachment, Executed before handle company logo upload, Executed before upload company logo attachment, Hook to interact with company logo upload allowed extensions, Executed before handle company signature upload, Executed before upload signature image attachment, Executed before handle favicon upload, Executed before upload favicon attachment, Executed before handle staff profile image upload, Executed before upload staff profile image, Hook to interact with staff profile image upload allowed extensions, Hook to interact with staff profile image thumb width, Hook to interact with staff profile image thumb height, Hook to interact with staff profile image small width, Hook to interact with staff profile image small height, Executed before handle contact profile image upload, Executed before upload contact profile image, Hook to interact with contact profile image upload allowed extensions, Hook to interact with contact profile image thumb width, Hook to interact with contact profile image thumb height, Hook to interact with contact profile image small width, Hook to interact with contact profile image small height, Executed before handle project discussion comment attachment, Executed before upload project discussion comment attachment, Hook to interact with get upload path by type.
+
+File ---> application\helpers\widgets_helper.php:
+   68:      return hooks()->apply_filters('get_dashboard_widgets', $widgets);
+VI: Hook can thiệp vào get dashboard widgets.
+EN: Hook to interact with get dashboard widgets.
+
+File ---> application\hooks\InitHook.php:
+   55:      hooks()->do_action('modules_loaded');
+VI: Hook can thiệp vào modules loaded.
+EN: Hook to interact with modules loaded.
+
+File ---> application\language\bulgarian\bulgarian_num_words_lang.php:
+   128:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\catalan\catalan_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\chinese\chinese_num_words_lang.php:
+   137:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\czech\czech_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\dutch\dutch_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\english\english_num_words_lang.php:
+   141:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\finnish\finnish_num_words_lang.php:
+   132:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\francais_canada\francais_canada_num_words_lang.php:
+   139:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\french\french_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\german\german_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\greek\greek_num_words_lang.php:
+   127:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies',$currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\indonesia\indonesia_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\italian\italian_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\japanese\japanese_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\norwegian\norwegian_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\persian\persian_num_words_lang.php:
+   131:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\polish\polish_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\portuguese\portuguese_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\portuguese_br\portuguese_br_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\romanian\romanian_num_words_lang.php:
+   135:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\russian\russian_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\slovak\slovak_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\spanish\spanish_num_words_lang.php:
+   133:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\swedish\swedish_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\turkish\turkish_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\ukrainian\ukrainian_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\language\vietnamese\vietnamese_num_words_lang.php:
+   134:      $currencies = hooks()->apply_filters('before_number_format_render_languge_currencies', $currencies);
+VI: Thực hiện trước khi number format render languge currencies.
+EN: Executed before number format render languge currencies.
+
+File ---> application\libraries\App.php:
+   95:      hooks()->do_action('app_base_after_construct_action');
+   280:      return hooks()->apply_filters('before_get_languages', $this->available_languages);
+   313:      $params = hooks()->apply_filters('table_params', $params, $table);
+   372:      return hooks()->apply_filters('get_option', $val, $name);
+   396:      return hooks()->apply_filters('quick_actions_links', app_sort_by_position($this->quick_actions));
+   416:      return hooks()->apply_filters('show_setup_menu', $this->show_setup_menu);
+   426:      return hooks()->apply_filters('tables_with_currency', $this->tables_with_currency);
+   436:      return hooks()->apply_filters('get_media_folder', $this->media_folder);
+   460:      hooks()->do_action('before_update_database', $updateToVersion);
+   472:      hooks()->do_action('database_updated', $updateToVersion);
+   511:      $this->media_folder = hooks()->apply_filters('before_set_media_folder', 'media');
+VI: Hook can thiệp vào app base after construct action, Thực hiện trước khi get languages, Hook can thiệp vào table params, Hook can thiệp vào get option, Hook can thiệp vào quick actions links, Hook can thiệp vào show setup menu, Hook can thiệp vào tables with currency, Hook can thiệp vào get media folder, Thực hiện trước khi update database, Hook can thiệp vào database updated, Thực hiện trước khi set media folder.
+EN: Hook to interact with app base after construct action, Executed before get languages, Hook to interact with table params, Hook to interact with get option, Hook to interact with quick actions links, Hook to interact with show setup menu, Hook to interact with tables with currency, Hook to interact with get media folder, Executed before update database, Hook to interact with database updated, Executed before set media folder.
+
+File ---> application\libraries\App_bulk_pdf_export.php:
+   185:      $class = hooks()->apply_filters('bulk_pdf_export_class', null, $this->type);
+VI: Hook can thiệp vào bulk pdf export class.
+EN: Hook to interact with bulk pdf export class.
+
+File ---> application\libraries\App_clients_area_constructor.php:
+   49:      hooks()->do_action('clients_init');
+   62:      $vars = hooks()->apply_filters('customers_area_autoloaded_vars', $vars);
+VI: Khởi tạo clients init, Hook can thiệp vào customers area autoloaded vars.
+EN: Initialization of clients init, Hook to interact with customers area autoloaded vars.
+
+File ---> application\libraries\App_items_table.php:
+   119:      $rate = hooks()->apply_filters (...);
+   138:      $item_amount_with_quantity = hooks()->apply_filters (...);
+   265:      $item_width = hooks()->apply_filters('item_description_td_width', 38);
+VI: Hook này dùng để can thiệp vào quy trình thực thi., Hook can thiệp vào item description td width.
+EN: This hook is used to intercept the execution flow., Hook to interact with item description td width.
+
+File ---> application\libraries\App_menu.php:
+   102:      $items = hooks()->apply_filters('nav_user_menu_items', $this->user_menu_items);
+   155:      $items = hooks()->apply_filters("{$group}_menu_items", $items);
+   164:      $children = hooks()->apply_filters("{$group}_menu_child_items", $children, $parent_slug);
+VI: Hook can thiệp vào nav user menu items, Hook này dùng để can thiệp vào quy trình thực thi..
+EN: Hook to interact with nav user menu items, This hook is used to intercept the execution flow..
+
+File ---> application\libraries\App_module_installer.php:
+   30:      hooks()->do_action('pre_upload_module', $_FILES['module']);
+   48:      hooks()->do_action('module_installed', $_FILES['module']);
+VI: Hook can thiệp vào pre upload module, Hook can thiệp vào module installed.
+EN: Hook to interact with pre upload module, Hook to interact with module installed.
+
+File ---> application\libraries\App_modules.php:
+   86:      hooks()->do_action('pre_activate_module', $module);
+   91:      hooks()->do_action("activate_{$name}_module");
+   102:      hooks()->do_action('module_activated', $module);
+   123:      hooks()->do_action('pre_deactivate_module', $module);
+   128:      hooks()->do_action("deactivate_{$name}_module");
+   140:      hooks()->do_action('module_deactivated', $module);
+   168:      hooks()->do_action('pre_uninstall_module', $module);
+   183:      hooks()->do_action("uninstall_{$name}_module");
+   197:      hooks()->do_action('module_uninstalled', $module);
+   365:      hooks()->do_action('module_' . $name . '_update_handler', $data['update_handler']);
+VI: Hook can thiệp vào pre activate module, Hook này dùng để can thiệp vào quy trình thực thi., Hook can thiệp vào module activated, Hook can thiệp vào pre deactivate module, Hook can thiệp vào module deactivated, Hook can thiệp vào pre uninstall module, Hook can thiệp vào module uninstalled, Hook can thiệp vào module .
+EN: Hook to interact with pre activate module, This hook is used to intercept the execution flow., Hook to interact with module activated, Hook to interact with pre deactivate module, Hook to interact with module deactivated, Hook to interact with pre uninstall module, Hook to interact with module uninstalled, Hook to interact with module .
+
+File ---> application\libraries\App_number_to_word.php:
+   117:      return hooks()->apply_filters('before_return_num_word', $final_val, [...]);
+VI: Thực hiện trước khi return num word.
+EN: Executed before return num word.
+
+File ---> application\libraries\App_pusher.php:
+   31:      $pusher_options = hooks()->apply_filters('pusher_options', []);
+VI: Hook can thiệp vào pusher options.
+EN: Hook to interact with pusher options.
+
+File ---> application\libraries\App_table.php:
+   210:      $rulesMap = hooks()->apply_filters('table_custom_field_rules_map', $this->customFieldsToRuleMap);
+   274:      return hooks()->apply_filters('table_' . $this->id() . '_custom_field_rule', $rule, $field);
+   330:      return hooks()->apply_filters (...);
+   604:      $params = hooks()->apply_filters('table_' . $this->id() . '_output_params', $params);
+VI: Hook can thiệp vào table custom field rules map, Hook can thiệp vào table , Hook này dùng để can thiệp vào quy trình thực thi..
+EN: Hook to interact with table custom field rules map, Hook to interact with table , This hook is used to intercept the execution flow..
+
+File ---> application\libraries\App_tabs.php:
+   119:      hooks()->do_action('before_get_tabs', $group);
+   128:      $tabs = hooks()->apply_filters("{$group}_tabs", $tabs);
+   143:      $children = hooks()->apply_filters("{$group}_tabs_child_items", $children, $parent_slug);
+VI: Thực hiện trước khi get tabs, Hook này dùng để can thiệp vào quy trình thực thi..
+EN: Executed before get tabs, This hook is used to intercept the execution flow..
+
+File ---> application\libraries\App_tags.php:
+   85:      hooks()->do_action('new_tag_created', $tag_id);
+VI: Hook can thiệp vào new tag created.
+EN: Hook to interact with new tag created.
+
+File ---> application\libraries\Stripe_core.php:
+   107:      return hooks()->apply_filters('stripe_webhook_events', $events);
+VI: Hook can thiệp vào stripe webhook events.
+EN: Hook to interact with stripe webhook events.
+
+File ---> application\libraries\assets\App_css.php:
+   44:      hooks()->do_action('before_compile_css_assets', $group);
+VI: Thực hiện trước khi compile css assets.
+EN: Executed before compile css assets.
+
+File ---> application\libraries\assets\App_scripts.php:
+   43:      hooks()->do_action('before_compile_scripts_assets', $group);
+VI: Thực hiện trước khi compile scripts assets.
+EN: Executed before compile scripts assets.
+
+File ---> application\libraries\gateways\Paypal_checkout_gateway.php:
+   96:      $data = hooks()->apply_filters('paypal_checkout_button_style_params', [...]);
+   132:      $data = hooks()->apply_filters('paypal_checkout_order_create_data', $data);
+   221:      $data = hooks()->apply_filters('paypal_checkout_payer_data', $payer, $invoice);
+VI: Hook can thiệp vào paypal checkout button style params, Hook can thiệp vào paypal checkout order create data, Hook can thiệp vào paypal checkout payer data.
+EN: Hook to interact with paypal checkout button style params, Hook to interact with paypal checkout order create data, Hook to interact with paypal checkout payer data.
+
+File ---> application\libraries\gateways\Paypal_gateway.php:
+   90:      $gateway->setlogoImageUrl(hooks()->apply_filters('paypal_logo_url', $logoURL));
+VI: Hook can thiệp vào paypal logo url.
+EN: Hook to interact with paypal logo url.
+
+File ---> application\libraries\import\Import_customers.php:
+   16:      $this->notImportableFields = hooks()->apply_filters('not_importable_clients_fields', ['userid', 'id', 'is_primary', 'password', 'datecreated', 'last_ip', 'last_login', 'last_password_change', 'active', 'new_pass_key', 'new_pass_key_requested', 'leadid', 'default_currency', 'profile_image', 'default_language', 'direction', 'show_primary_contact', 'invoice_emails', 'estimate_emails', 'project_emails', 'task_emails', 'contract_emails', 'credit_note_emails', 'ticket_emails', 'addedfrom', 'registration_confirmed', 'last_active_time', 'email_verified_at', 'email_verification_key', 'email_verification_sent_at']);
+VI: Hook can thiệp vào not importable clients fields.
+EN: Hook to interact with not importable clients fields.
+
+File ---> application\libraries\import\Import_expenses.php:
+   23:      $this->notImportableFields = hooks()->apply_filters('not_importable_expense_fields', [...]);
+VI: Hook can thiệp vào not importable expense fields.
+EN: Hook to interact with not importable expense fields.
+
+File ---> application\libraries\import\Import_leads.php:
+   20:      $this->notImportableFields = hooks()->apply_filters('not_importable_leads_fields', ['id', 'assigned', 'dateadded', 'last_status_change', 'addedfrom', 'leadorder', 'date_converted', 'lost', 'junk', 'is_imported_from_email_integration', 'email_integration_uid', 'is_public', 'dateassigned', 'client_id', 'lastcontact', 'last_lead_status', 'from_form_id', 'default_language', 'hash']);
+VI: Hook can thiệp vào not importable leads fields.
+EN: Hook to interact with not importable leads fields.
+
+File ---> application\libraries\merge_fields\App_merge_fields.php:
+   53:      $this->registered = hooks()->apply_filters('register_merge_fields', []);
+   210:      return hooks()->apply_filters('available_merge_fields', $available);
+VI: Hook can thiệp vào register merge fields, Hook can thiệp vào available merge fields.
+EN: Hook to interact with register merge fields, Hook to interact with available merge fields.
+
+File ---> application\libraries\merge_fields\Client_merge_fields.php:
+   495:      return hooks()->apply_filters('client_contact_merge_fields', $fields, [...]);
+   519:      return hooks()->apply_filters('client_statement_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào client contact merge fields, Hook can thiệp vào client statement merge fields.
+EN: Hook to interact with client contact merge fields, Hook to interact with client statement merge fields.
+
+File ---> application\libraries\merge_fields\Contract_merge_fields.php:
+   120:      return hooks()->apply_filters('contract_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào contract merge fields.
+EN: Hook to interact with contract merge fields.
+
+File ---> application\libraries\merge_fields\Credit_note_merge_fields.php:
+   95:      return hooks()->apply_filters('credit_note_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào credit note merge fields.
+EN: Hook to interact with credit note merge fields.
+
+File ---> application\libraries\merge_fields\Estimate_merge_fields.php:
+   117:      return hooks()->apply_filters('estimate_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào estimate merge fields.
+EN: Hook to interact with estimate merge fields.
+
+File ---> application\libraries\merge_fields\Estimate_request_merge_fields.php:
+   132:      return hooks()->apply_filters('estimate_request_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào estimate request merge fields.
+EN: Hook to interact with estimate request merge fields.
+
+File ---> application\libraries\merge_fields\Event_merge_fields.php:
+   71:      return hooks()->apply_filters('event_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào event merge fields.
+EN: Hook to interact with event merge fields.
+
+File ---> application\libraries\merge_fields\Invoice_batch_payments_merge_fields.php:
+   40:      return hooks()->apply_filters('invoice_batch_payments_merge_fields', $fields);
+VI: Hook can thiệp vào invoice batch payments merge fields.
+EN: Hook to interact with invoice batch payments merge fields.
+
+File ---> application\libraries\merge_fields\Invoice_merge_fields.php:
+   217:      return hooks()->apply_filters('invoice_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào invoice merge fields.
+EN: Hook to interact with invoice merge fields.
+
+File ---> application\libraries\merge_fields\Leads_merge_fields.php:
+   262:      return hooks()->apply_filters('lead_merge_fields', $fields, ['id' => $lead->id, 'lead' => $lead]);
+VI: Hook can thiệp vào lead merge fields.
+EN: Hook to interact with lead merge fields.
+
+File ---> application\libraries\merge_fields\Notifications_merge_fields.php:
+   42:      return hooks()->apply_filters('notifications_merge_fields', $fields);
+VI: Hook can thiệp vào notifications merge fields.
+EN: Hook to interact with notifications merge fields.
+
+File ---> application\libraries\merge_fields\Other_merge_fields.php:
+   27:      $available_for = hooks()->apply_filters('other_merge_fields_available_for', $available_for);
+   98:      $logo_width = hooks()->apply_filters('merge_field_logo_img_width', '');
+   132:      return hooks()->apply_filters('other_merge_fields', $fields);
+VI: Hook can thiệp vào other merge fields available for, Hook can thiệp vào merge field logo img width, Hook can thiệp vào other merge fields.
+EN: Hook to interact with other merge fields available for, Hook to interact with merge field logo img width, Hook to interact with other merge fields.
+
+File ---> application\libraries\merge_fields\Projects_merge_fields.php:
+   234:      return hooks()->apply_filters('project_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào project merge fields.
+EN: Hook to interact with project merge fields.
+
+File ---> application\libraries\merge_fields\Proposals_merge_fields.php:
+   188:      return hooks()->apply_filters('proposal_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào proposal merge fields.
+EN: Hook to interact with proposal merge fields.
+
+File ---> application\libraries\merge_fields\Staff_merge_fields.php:
+   189:      return hooks()->apply_filters('staff_merge_fields', $fields, [...]);
+   212:      return hooks()->apply_filters('staff_reminder_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào staff merge fields, Hook can thiệp vào staff reminder merge fields.
+EN: Hook to interact with staff merge fields, Hook to interact with staff reminder merge fields.
+
+File ---> application\libraries\merge_fields\Subscriptions_merge_fields.php:
+   84:      return hooks()->apply_filters('subscription_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào subscription merge fields.
+EN: Hook to interact with subscription merge fields.
+
+File ---> application\libraries\merge_fields\Tasks_merge_fields.php:
+   200:      return hooks()->apply_filters('task_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào task merge fields.
+EN: Hook to interact with task merge fields.
+
+File ---> application\libraries\merge_fields\Ticket_merge_fields.php:
+   208:      return hooks()->apply_filters('ticket_merge_fields', $fields, [...]);
+VI: Hook can thiệp vào ticket merge fields.
+EN: Hook to interact with ticket merge fields.
+
+File ---> application\libraries\pdf\App_pdf.php:
+   78:      hooks()->do_action('pdf_construct', ['pdf_instance' => $this, 'type' => $this->type()]);
+   174:      if (hooks()->apply_filters('process_pdf_signature_on_close', true)) {;
+   178:      hooks()->do_action('pdf_close', ['pdf_instance' => $this, 'type' => $this->type()]);
+   187:      hooks()->do_action('pdf_header', ['pdf_instance' => $this, 'type' => $this->type()]);
+   197:      hooks()->do_action('pdf_footer', ['pdf_instance' => $this, 'type' => $this->type()]);
+   253:      return hooks()->apply_filters($this->type() . '_pdf_build_path', $this->file_path());
+VI: Hook can thiệp vào pdf construct, Hook can thiệp vào process pdf signature on close, Hook can thiệp vào pdf close, Hook can thiệp vào pdf header, Hook can thiệp vào pdf footer, Hook này dùng để can thiệp vào quy trình thực thi..
+EN: Hook to interact with pdf construct, Hook to interact with process pdf signature on close, Hook to interact with pdf close, Hook to interact with pdf header, Hook to interact with pdf footer, This hook is used to intercept the execution flow..
+
+File ---> application\libraries\pdf\Contract_pdf.php:
+   14:      $contract                = hooks()->apply_filters('contract_html_pdf_data', $contract);
+VI: Hook can thiệp vào contract html pdf data.
+EN: Hook to interact with contract html pdf data.
+
+File ---> application\libraries\pdf\Estimate_pdf.php:
+   17:      $estimate                = hooks()->apply_filters('estimate_html_pdf_data', $estimate);
+VI: Hook can thiệp vào estimate html pdf data.
+EN: Hook to interact with estimate html pdf data.
+
+File ---> application\libraries\pdf\Invoice_pdf.php:
+   16:      $invoice                = hooks()->apply_filters('invoice_html_pdf_data', $invoice);
+VI: Hook can thiệp vào invoice html pdf data.
+EN: Hook to interact with invoice html pdf data.
+
+File ---> application\libraries\pdf\PDF_Signature.php:
+   19:      $lineBreaksBefore = hooks()->apply_filters('pdf_signature_line_breaks_before', 1);
+   57:      hooks()->apply_filters('pdf_signature_break_lines', 1);
+   72:      hooks()->do_action('before_customer_pdf_signature', $hookData);
+   74:      $customerSignatureSize = hooks()->apply_filters('customer_pdf_signature_size', 0);
+   84:      hooks()->do_action('after_customer_pdf_signature', $hookData);
+   100:      $blankSignatureLine = hooks()->apply_filters('blank_signature_line', '_________________________');
+   129:      return hooks()->apply_filters (...);
+VI: Hook can thiệp vào pdf signature line breaks before, Hook can thiệp vào pdf signature break lines, Thực hiện trước khi customer pdf signature, Hook can thiệp vào customer pdf signature size, Thực hiện sau khi customer pdf signature, Hook can thiệp vào blank signature line, Hook này dùng để can thiệp vào quy trình thực thi..
+EN: Hook to interact with pdf signature line breaks before, Hook to interact with pdf signature break lines, Executed before customer pdf signature, Hook to interact with customer pdf signature size, Executed after customer pdf signature, Hook to interact with blank signature line, This hook is used to intercept the execution flow..
+
+File ---> application\libraries\pdf\Proposal_pdf.php:
+   26:      $proposal                = hooks()->apply_filters('proposal_html_pdf_data', $proposal);
+VI: Hook can thiệp vào proposal html pdf data.
+EN: Hook to interact with proposal html pdf data.
+
+File ---> application\libraries\sms\App_sms.php:
+   88:      return hooks()->apply_filters('get_sms_gateways', self::$gateways);
+   110:      $triggers = hooks()->apply_filters('sms_gateway_available_triggers', $this->triggers);
+   144:      hooks()->do_action('sms_trigger_triggered', ['message' => $message, 'trigger' => $trigger, 'phone' => $phone]);
+   414:      $this->triggers = hooks()->apply_filters('sms_triggers', $triggers);
+VI: Hook can thiệp vào get sms gateways, Hook can thiệp vào sms gateway available triggers, Hook can thiệp vào sms trigger triggered, Hook can thiệp vào sms triggers.
+EN: Hook to interact with get sms gateways, Hook to interact with sms gateway available triggers, Hook to interact with sms trigger triggered, Hook to interact with sms triggers.
+
+File ---> application\libraries\sms\Sms_msg91.php:
+   199:      return hooks()->apply_filters('msg91_common_options', array_filter( [...]);
+VI: Hook can thiệp vào msg91 common options.
+EN: Hook to interact with msg91 common options.
+
+File ---> application\models\Announcements_model.php:
+   99:      $data = hooks()->apply_filters('before_announcement_added', $data);
+   104:      hooks()->do_action('announcement_created', $insert_id);
+   125:      $data = hooks()->apply_filters('before_announcement_updated', $data, $id);
+   130:      hooks()->do_action('announcement_updated', $id);
+   148:      hooks()->do_action('before_delete_announcement', $id);
+   156:      hooks()->do_action('announcement_deleted', $id);
+VI: Thực hiện trước khi announcement added, Hook can thiệp vào announcement created, Thực hiện trước khi announcement updated, Hook can thiệp vào announcement updated, Thực hiện trước khi delete announcement, Hook can thiệp vào announcement deleted.
+EN: Executed before announcement added, Hook to interact with announcement created, Executed before announcement updated, Hook to interact with announcement updated, Executed before delete announcement, Hook to interact with announcement deleted.
+
+File ---> application\models\Authentication_model.php:
+   78:      hooks()->do_action('before_staff_login', [...]);
+   95:      hooks()->do_action('before_client_login', [...]);
+   134:      hooks()->do_action('before_contact_logout', get_client_user_id());
+   139:      hooks()->do_action('before_staff_logout', get_staff_user_id());
+   288:      hooks()->do_action('set_password_email_sent', ['is_staff_member' => false, 'user' => $user]);
+   350:      hooks()->do_action('forgot_password_email_sent', ['is_staff_member' => $staff, 'user' => $user]);
+   546:      hooks()->do_action('before_staff_login', [...]);
+VI: Thực hiện trước khi staff login, Thực hiện trước khi client login, Thực hiện trước khi contact logout, Thực hiện trước khi staff logout, Hook can thiệp vào set password email sent, Hook can thiệp vào forgot password email sent.
+EN: Executed before staff login, Executed before client login, Executed before contact logout, Executed before staff logout, Hook to interact with set password email sent, Hook to interact with forgot password email sent.
+
+File ---> application\models\Client_groups_model.php:
+   93:      hooks()->do_action('customer_group_deleted', $id);
+VI: Hook can thiệp vào customer group deleted.
+EN: Hook to interact with customer group deleted.
+
+File ---> application\models\Client_vault_entries_model.php:
+   99:      hooks()->do_action('customer_vault_entry_deleted', ['vault_id' => $id, 'customer_id' => $vault->customer_id]);
+VI: Hook can thiệp vào customer vault entry deleted.
+EN: Hook to interact with customer vault entry deleted.
+
+File ---> application\models\Clients_model.php:
+   15:      $this->contact_columns = hooks()->apply_filters('contact_columns', ['firstname', 'lastname', 'email', 'phonenumber', 'title', 'password', 'send_set_password_email', 'donotsendwelcomeemail', 'permissions', 'direction', 'invoice_emails', 'estimate_emails', 'credit_note_emails', 'contract_emails', 'task_emails', 'project_emails', 'ticket_emails', 'is_primary']);
+   131:      $data = hooks()->apply_filters('before_client_added', $data);
+   209:      hooks()->do_action('after_client_created', [...]);
+   235:      $data = hooks()->apply_filters('before_client_updated', $data, $id);
+   302:      hooks()->do_action('client_updated', [...]);
+   366:      $data = hooks()->apply_filters('before_update_contact', $data, $id);
+   430:      hooks()->do_action('contact_updated', $id, $data);
+   527:      $data = hooks()->apply_filters('before_create_contact', $data);
+   616:      hooks()->do_action('contact_created', $contact_id);
+   653:      $data = hooks()->apply_filters('before_create_contact', $data);
+   690:      hooks()->do_action('contact_created', $contact_id);
+   736:      $data = hooks()->apply_filters('customer_update_company_info', $data, $id);
+   744:      hooks()->do_action('customer_updated_company_info', $id);
+   856:      hooks()->do_action('before_client_deleted', $id);
+   1023:      hooks()->do_action('after_client_deleted', $id);
+   1046:      hooks()->do_action('before_delete_contact', $id);
+   1212:      hooks()->do_action('contact_deleted', $id, $result);
+   1325:      $status = hooks()->apply_filters('change_contact_status', $status, $id);
+   1332:      hooks()->do_action('contact_status_changed', [...]);
+   1359:      hooks()->do_action('client_status_changed', [...]);
+   1680:      hooks()->do_action('before_remove_contact_profile_image');
+VI: Hook can thiệp vào contact columns, Thực hiện trước khi client added, Thực hiện sau khi client created, Thực hiện trước khi client updated, Hook can thiệp vào client updated, Thực hiện trước khi update contact, Hook can thiệp vào contact updated, Thực hiện trước khi create contact, Hook can thiệp vào contact created, Hook can thiệp vào customer update company info, Hook can thiệp vào customer updated company info, Thực hiện trước khi client deleted, Thực hiện sau khi client deleted, Thực hiện trước khi delete contact, Hook can thiệp vào contact deleted, Hook can thiệp vào change contact status, Hook can thiệp vào contact status changed, Hook can thiệp vào client status changed, Thực hiện trước khi remove contact profile image.
+EN: Hook to interact with contact columns, Executed before client added, Executed after client created, Executed before client updated, Hook to interact with client updated, Executed before update contact, Hook to interact with contact updated, Executed before create contact, Hook to interact with contact created, Hook to interact with customer update company info, Hook to interact with customer updated company info, Executed before client deleted, Executed after client deleted, Executed before delete contact, Hook to interact with contact deleted, Hook to interact with change contact status, Hook to interact with contact status changed, Hook to interact with client status changed, Executed before remove contact profile image.
+
+File ---> application\models\Contracts_model.php:
+   119:      $data = hooks()->apply_filters('before_contract_added', $data);
+   128:      hooks()->do_action('after_contract_added', $insert_id);
+   174:      $data = hooks()->apply_filters('before_contract_updated', $data, $id);
+   188:      hooks()->do_action('after_contract_updated', $id);
+   445:      hooks()->do_action('before_contract_deleted', $id);
+   485:      hooks()->do_action('after_contract_deleted', $id);
+VI: Thực hiện trước khi contract added, Thực hiện sau khi contract added, Thực hiện trước khi contract updated, Thực hiện sau khi contract updated, Thực hiện trước khi contract deleted, Thực hiện sau khi contract deleted.
+EN: Executed before contract added, Executed after contract added, Executed before contract updated, Executed after contract updated, Executed before contract deleted, Executed after contract deleted.
+
+File ---> application\models\Credit_notes_model.php:
+   17:      return hooks()->apply_filters('before_get_credit_notes_statuses', [...]);
+   124:      hooks()->do_action('credit_note_sent', $id);
+   196:      $hook = hooks()->apply_filters('before_create_credit_note', ['data' => $data, 'items' => $items]);
+   225:      hooks()->do_action('after_create_credit_note', $insert_id);
+   270:      $hook = hooks()->apply_filters('before_update_credit_note', [...]);
+   355:      hooks()->do_action('after_update_credit_note', $id);
+   411:      hooks()->do_action('before_credit_note_deleted', $id);
+   458:      hooks()->do_action('after_credit_note_deleted', $id);
+   472:      hooks()->do_action('credit_note_status_changed', $id, ['status' => $status]);
+   643:      hooks()->do_action('created_credit_note_from_invoice', ['invoice_id' => $invoice_id, 'credit_note_id' => $id]);
+   674:      hooks()->do_action('credit_note_refund_created', ['data' => $data, 'credit_note_id' => $id]);
+   703:      hooks()->do_action('credit_note_refund_updated', ['data' => $data, 'refund_id' => $refund->credit_note_id]);
+   752:      hooks()->do_action('credit_note_refund_deleted', ['refund_id' => $refund_id, 'credit_note_id' => $credit_note_id]);
+   810:      hooks()->do_action('credits_applied', ['data' => $data, 'credit_note_id' => $id]);
+VI: Thực hiện trước khi get credit notes statuses, Hook can thiệp vào credit note sent, Thực hiện trước khi create credit note, Thực hiện sau khi create credit note, Thực hiện trước khi update credit note, Thực hiện sau khi update credit note, Thực hiện trước khi credit note deleted, Thực hiện sau khi credit note deleted, Hook can thiệp vào credit note status changed, Hook can thiệp vào created credit note from invoice, Hook can thiệp vào credit note refund created, Hook can thiệp vào credit note refund updated, Hook can thiệp vào credit note refund deleted, Hook can thiệp vào credits applied.
+EN: Executed before get credit notes statuses, Hook to interact with credit note sent, Executed before create credit note, Executed after create credit note, Executed before update credit note, Executed after update credit note, Executed before credit note deleted, Executed after credit note deleted, Hook to interact with credit note status changed, Hook to interact with created credit note from invoice, Hook to interact with credit note refund created, Hook to interact with credit note refund updated, Hook to interact with credit note refund deleted, Hook to interact with credits applied.
+
+File ---> application\models\Cron_model.php:
+   55:      hooks()->do_action('before_cron_run', $manually);
+   101:      $retryQueue = hooks()->apply_filters('cron_retry_email_queue_seconds', 600);
+   112:      hooks()->do_action('after_cron_run', $manually);
+   178:      $older_than_days = hooks()->apply_filters('delete_two_checkout_log_older_than_days', 40);
+   204:      $eventNotifications = hooks()->apply_filters('event_notifications', true);
+   246:      $eventNotifications = hooks()->apply_filters('event_notifications', true);
+   312:      hooks()->do_action('after_ticket_status_changed', [...]);
+   471:      hooks()->do_action('before_check_recurring_tasks');
+   502:      'status'              => hooks()->apply_filters('recurring_task_status', 1) ...);
+   549:      hooks()->do_action('after_check_recurring_tasks');
+   662:      hooks()->do_action('after_recurring_expense_created', ['original_expense' => $expense, 'new_expense_id' => $insert_id]);
+   667:      $send_recurring_expenses_email = hooks()->apply_filters('send_recurring_system_expenses_email', 'true');
+   901:      hooks()->do_action('after_recurring_invoice_created', ['original_invoice' => $invoice, 'new_invoice_id' => $id]);
+   906:      $send_recurring_invoices_email = hooks()->apply_filters('send_recurring_invoices_system_email', 'true');
+   1425:      $body = hooks()->apply_filters (...);
+   1453:      $task_data = hooks()->apply_filters('before_add_task', $task_data);
+   1465:      hooks()->do_action('after_add_task', $task_id);
+   1486:      $lead = hooks()->apply_filters('leads_email_integration_lead_check', $lead, $message);
+   1530:      hooks()->do_action('existing_lead_email_inserted_from_email_integration', [...]);
+   1555:      $lead_data = hooks()->apply_filters('before_insert_lead_from_email_integration', $lead_data);
+   1617:      hooks()->do_action('lead_created', $insert_id);
+   1619:      hooks()->do_action('lead_created_from_email_integration', $insert_id);
+   1759:      if (hooks()->apply_filters('imap_fetch_from_email_by_reply_to_header', true)) {;
+   1782:      $data = hooks()->apply_filters('imap_auto_import_ticket_data', $data, $message);
+VI: Thực hiện trước khi cron run, Hook can thiệp vào cron retry email queue seconds, Thực hiện sau khi cron run, Hook can thiệp vào delete two checkout log older than days, Hook can thiệp vào event notifications, Thực hiện sau khi ticket status changed, Thực hiện trước khi check recurring tasks, Hook can thiệp vào recurring task status, Thực hiện sau khi check recurring tasks, Thực hiện sau khi recurring expense created, Hook can thiệp vào send recurring system expenses email, Thực hiện sau khi recurring invoice created, Hook can thiệp vào send recurring invoices system email, Hook này dùng để can thiệp vào quy trình thực thi., Thực hiện trước khi add task, Thực hiện sau khi add task, Hook can thiệp vào leads email integration lead check, Hook can thiệp vào existing lead email inserted from email integration, Thực hiện trước khi insert lead from email integration, Hook can thiệp vào lead created, Hook can thiệp vào lead created from email integration, Hook can thiệp vào imap fetch from email by reply to header, Hook can thiệp vào imap auto import ticket data.
+EN: Executed before cron run, Hook to interact with cron retry email queue seconds, Executed after cron run, Hook to interact with delete two checkout log older than days, Hook to interact with event notifications, Executed after ticket status changed, Executed before check recurring tasks, Hook to interact with recurring task status, Executed after check recurring tasks, Executed after recurring expense created, Hook to interact with send recurring system expenses email, Executed after recurring invoice created, Hook to interact with send recurring invoices system email, This hook is used to intercept the execution flow., Executed before add task, Executed after add task, Hook to interact with leads email integration lead check, Hook to interact with existing lead email inserted from email integration, Executed before insert lead from email integration, Hook to interact with lead created, Hook to interact with lead created from email integration, Hook to interact with imap fetch from email by reply to header, Hook to interact with imap auto import ticket data.
+
+File ---> application\models\Departments_model.php:
+   67:      $data = hooks()->apply_filters('before_department_added', $data);
+   71:      hooks()->do_action('after_department_added', $insert_id);
+   125:      $data = hooks()->apply_filters('before_department_updated', $data, $id);
+   153:      hooks()->do_action('before_delete_department', $id);
+VI: Thực hiện trước khi department added, Thực hiện sau khi department added, Thực hiện trước khi department updated, Thực hiện trước khi delete department.
+EN: Executed before department added, Executed after department added, Executed before department updated, Executed before delete department.
+
+File ---> application\models\Emails_model.php:
+   199:      $cnf = hooks()->apply_filters('before_send_simple_email', $cnf);
+VI: Thực hiện trước khi send simple email.
+EN: Executed before send simple email.
+
+File ---> application\models\Estimate_request_model.php:
+   31:      hooks()->do_action('estimate_request_assigned_changed', [...]);
+   87:      hooks()->do_action('estimate_request_status_changed', [...]);
+   257:      hooks()->do_action('before_estimate_request_deleted', $id);
+   320:      $data['color'] = hooks()->apply_filters('default_estimate_request_status_color', '#757575');
+VI: Hook can thiệp vào estimate request assigned changed, Hook can thiệp vào estimate request status changed, Thực hiện trước khi estimate request deleted, Hook can thiệp vào default estimate request status color.
+EN: Hook to interact with estimate request assigned changed, Hook to interact with estimate request status changed, Executed before estimate request deleted, Hook to interact with default estimate request status color.
+
+File ---> application\models\Estimates_model.php:
+   17:      $this->statuses = hooks()->apply_filters('before_set_estimate_statuses', [...]);
+   294:      hooks()->do_action('estimate_converted_to_invoice', ['invoice_id' => $id, 'estimate_id' => $_estimate->id]);
+   533:      $hook = hooks()->apply_filters('before_estimate_added', [...]);
+   576:      hooks()->do_action('after_estimate_added', $insert_id);
+   660:      $hook = hooks()->apply_filters('before_estimate_updated', [...]);
+   822:      hooks()->do_action('after_estimate_updated', $id);
+   894:      hooks()->do_action('estimate_accepted', $id);
+   926:      hooks()->do_action('estimate_declined', $id);
+   1031:      hooks()->do_action('before_estimate_deleted', $id);
+   1128:      hooks()->do_action('after_estimate_deleted', $id);
+   1322:      $hook = hooks()->apply_filters('send_estimate_to_customer_file_name', [...]);
+   1346:      hooks()->do_action('estimate_sent', $id);
+VI: Thực hiện trước khi set estimate statuses, Hook can thiệp vào estimate converted to invoice, Thực hiện trước khi estimate added, Thực hiện sau khi estimate added, Thực hiện trước khi estimate updated, Thực hiện sau khi estimate updated, Hook can thiệp vào estimate accepted, Hook can thiệp vào estimate declined, Thực hiện trước khi estimate deleted, Thực hiện sau khi estimate deleted, Hook can thiệp vào send estimate to customer file name, Hook can thiệp vào estimate sent.
+EN: Executed before set estimate statuses, Hook to interact with estimate converted to invoice, Executed before estimate added, Executed after estimate added, Executed before estimate updated, Executed after estimate updated, Hook to interact with estimate accepted, Hook to interact with estimate declined, Executed before estimate deleted, Executed after estimate deleted, Hook to interact with send estimate to customer file name, Hook to interact with estimate sent.
+
+File ---> application\models\Expenses_model.php:
+   126:      $data = hooks()->apply_filters('before_expense_added', $data);
+   152:      hooks()->do_action('after_expense_added', $insert_id);
+   393:      $data          = hooks()->apply_filters('before_expense_updated', $data, $id);
+   409:      hooks()->do_action('expense_updated', [...]);
+   469:      hooks()->do_action('after_expense_deleted', $id);
+   628:      hooks()->do_action('expense_converted_to_invoice', ['expense_id' => $expense->expenseid, 'invoice_id' => $invoiceid]);
+VI: Thực hiện trước khi expense added, Thực hiện sau khi expense added, Thực hiện trước khi expense updated, Hook can thiệp vào expense updated, Thực hiện sau khi expense deleted, Hook can thiệp vào expense converted to invoice.
+EN: Executed before expense added, Executed after expense added, Executed before expense updated, Hook to interact with expense updated, Executed after expense deleted, Hook to interact with expense converted to invoice.
+
+File ---> application\models\Invoice_items_model.php:
+   63:      hooks()->do_action('item_coppied', $insert_id);
+   169:      $data          = hooks()->apply_filters('before_item_created', $data);
+   179:      hooks()->do_action('item_created', $insert_id);
+   227:      $data          = hooks()->apply_filters('before_update_item', $data, $itemid);
+   243:      hooks()->do_action('after_item_updated', [...]);
+   289:      hooks()->do_action('item_deleted', $id);
+VI: Hook can thiệp vào item coppied, Thực hiện trước khi item created, Hook can thiệp vào item created, Thực hiện trước khi update item, Thực hiện sau khi item updated, Hook can thiệp vào item deleted.
+EN: Hook to interact with item coppied, Executed before item created, Hook to interact with item created, Executed before update item, Executed after item updated, Hook to interact with item deleted.
+
+File ---> application\models\Invoices_model.php:
+   131:      return hooks()->apply_filters('get_invoice', $invoice);
+   164:      hooks()->do_action('invoice_marked_as_cancelled', $id);
+   182:      hooks()->do_action('invoice_unmarked_as_cancelled', $id);
+   384:      $hook = hooks()->apply_filters('before_invoice_added', [...]);
+   537:      hooks()->do_action('after_invoice_added', $insert_id);
+   591:      $invoices = hooks()->apply_filters('invoices_ids_available_for_merging', $invoices);
+   713:      hooks()->do_action('invoice_copied', ['copy_from' => $_invoice->id, 'copy_id' => $id]);
+   830:      $hook = hooks()->apply_filters('before_update_invoice', $hookData, $id);
+   917:      hooks()->do_action('invoice_updated', array_merge($hookData, ['updated' => &$updated]));
+   1203:      hooks()->do_action('before_invoice_deleted', $id);
+   1353:      hooks()->do_action('after_invoice_deleted', $id);
+   1425:      $attach_pdf = hooks()->apply_filters('invoice_overdue_notice_attach_pdf', true);
+   1483:      hooks()->do_action('invoice_overdue_reminder_sent', [...]);
+   1511:      if ($attach_pdf = hooks()->apply_filters('invoice_due_notice_attach_pdf', true) === true) {;
+   1567:      hooks()->do_action('invoice_due_reminder_sent', [...]);
+   1596:      $invoice = hooks()->apply_filters (...);
+   1701:      hooks()->do_action('invoice_sent', $id);
+VI: Hook can thiệp vào get invoice, Hook can thiệp vào invoice marked as cancelled, Hook can thiệp vào invoice unmarked as cancelled, Thực hiện trước khi invoice added, Thực hiện sau khi invoice added, Hook can thiệp vào invoices ids available for merging, Hook can thiệp vào invoice copied, Thực hiện trước khi update invoice, Hook can thiệp vào invoice updated, Thực hiện trước khi invoice deleted, Thực hiện sau khi invoice deleted, Hook can thiệp vào invoice overdue notice attach pdf, Hook can thiệp vào invoice overdue reminder sent, Hook can thiệp vào invoice due notice attach pdf, Hook can thiệp vào invoice due reminder sent, Hook này dùng để can thiệp vào quy trình thực thi., Hook can thiệp vào invoice sent.
+EN: Hook to interact with get invoice, Hook to interact with invoice marked as cancelled, Hook to interact with invoice unmarked as cancelled, Executed before invoice added, Executed after invoice added, Hook to interact with invoices ids available for merging, Hook to interact with invoice copied, Executed before update invoice, Hook to interact with invoice updated, Executed before invoice deleted, Executed after invoice deleted, Hook to interact with invoice overdue notice attach pdf, Hook to interact with invoice overdue reminder sent, Hook to interact with invoice due notice attach pdf, Hook to interact with invoice due reminder sent, This hook is used to intercept the execution flow., Hook to interact with invoice sent.
+
+File ---> application\models\Knowledge_base_model.php:
+   47:      $total_related_articles = hooks()->apply_filters('total_related_articles', 5);
+   91:      $data = hooks()->apply_filters('before_add_kb_article', $data);
+VI: Hook can thiệp vào total related articles, Thực hiện trước khi add kb article.
+EN: Hook to interact with total related articles, Executed before add kb article.
+
+File ---> application\models\Leads_model.php:
+   96:      $data = hooks()->apply_filters('before_lead_added', $data);
+   126:      hooks()->do_action('lead_created', $insert_id);
+   191:      hooks()->do_action('after_lead_assigned_member_notification_sent', $lead_id);
+   286:      hooks()->do_action('lead_status_changed', [...]);
+   308:      hooks()->do_action('after_lead_updated', $id);
+   313:      hooks()->do_action('after_lead_updated', $id);
+   329:      hooks()->do_action('before_lead_deleted', $id);
+   391:      hooks()->do_action('after_lead_deleted', $id);
+   423:      hooks()->do_action('lead_marked_as_lost', $id);
+   484:      hooks()->do_action('lead_marked_as_junk', $id);
+   735:      $data['color'] = hooks()->apply_filters('default_lead_status_color', '#757575');
+   835:      hooks()->do_action('lead_status_changed', [...]);
+   873:      $sorting = hooks()->apply_filters('lead_activity_log_default_sort', 'ASC');
+VI: Thực hiện trước khi lead added, Hook can thiệp vào lead created, Thực hiện sau khi lead assigned member notification sent, Hook can thiệp vào lead status changed, Thực hiện sau khi lead updated, Thực hiện trước khi lead deleted, Thực hiện sau khi lead deleted, Hook can thiệp vào lead marked as lost, Hook can thiệp vào lead marked as junk, Hook can thiệp vào default lead status color, Hook can thiệp vào lead activity log default sort.
+EN: Executed before lead added, Hook to interact with lead created, Executed after lead assigned member notification sent, Hook to interact with lead status changed, Executed after lead updated, Executed before lead deleted, Executed after lead deleted, Hook to interact with lead marked as lost, Hook to interact with lead marked as junk, Hook to interact with default lead status color, Hook to interact with lead activity log default sort.
+
+File ---> application\models\Misc_model.php:
+   19:      return hooks()->apply_filters('notifications_limit', $this->notifications_limit);
+   283:      return hooks()->apply_filters('get_notes', $notes, ['rel_id' => $rel_id, 'rel_type' => $rel_type]);
+   294:      $data = hooks()->apply_filters('create_note_data', $data, $rel_type, $rel_id);
+   300:      hooks()->do_action('note_created', $insert_id, $data);
+   310:      hooks()->do_action('before_update_note', [...]);
+   321:      hooks()->do_action('note_updated', $id, $data);
+   339:      hooks()->do_action('before_delete_note', $note_id);
+   351:      hooks()->do_action('note_deleted', $note_id, $note);
+   799:      $result = hooks()->apply_filters('global_search_result_query', $result, $q, $limit);
+VI: Hook can thiệp vào notifications limit, Hook can thiệp vào get notes, Hook can thiệp vào create note data, Hook can thiệp vào note created, Thực hiện trước khi update note, Hook can thiệp vào note updated, Thực hiện trước khi delete note, Hook can thiệp vào note deleted, Hook can thiệp vào global search result query.
+EN: Hook to interact with notifications limit, Hook to interact with get notes, Hook to interact with create note data, Hook to interact with note created, Executed before update note, Hook to interact with note updated, Executed before delete note, Hook to interact with note deleted, Hook to interact with global search result query.
+
+File ---> application\models\Payment_modes_model.php:
+   104:      $data = hooks()->apply_filters('before_paymentmode_added', $data);
+   121:      hooks()->do_action('after_paymentmode_added', [...]);
+   162:      hooks()->do_action('after_update_paymentmode', [...]);
+   215:      hooks()->do_action('before_get_payment_gateways');
+   223:      $this->gateways = hooks()->apply_filters('app_payment_gateways', $this->payment_gateways);
+VI: Thực hiện trước khi paymentmode added, Thực hiện sau khi paymentmode added, Thực hiện sau khi update paymentmode, Thực hiện trước khi get payment gateways, Hook can thiệp vào app payment gateways.
+EN: Executed before paymentmode added, Executed after paymentmode added, Executed after update paymentmode, Executed before get payment gateways, Hook to interact with app payment gateways.
+
+File ---> application\models\Payments_model.php:
+   131:      $data              = hooks()->apply_filters('before_process_gateway_func', $data);
+   215:      $data                 = hooks()->apply_filters('before_payment_recorded', $data);
+   377:      hooks()->do_action('after_payment_added', $insert_id);
+   398:      $data = hooks()->apply_filters('before_payment_updated', $data, $id);
+   411:      hooks()->do_action('after_payment_updated', [...]);
+   435:      hooks()->do_action('before_payment_deleted', [...]);
+   449:      hooks()->do_action('after_payment_deleted', [...]);
+   475:      $data                 = hooks()->apply_filters('before_payment_recorded', $data);
+   512:      hooks()->do_action('after_payment_added', $insert_id);
+VI: Thực hiện trước khi process gateway func, Thực hiện trước khi payment recorded, Thực hiện sau khi payment added, Thực hiện trước khi payment updated, Thực hiện sau khi payment updated, Thực hiện trước khi payment deleted, Thực hiện sau khi payment deleted.
+EN: Executed before process gateway func, Executed before payment recorded, Executed after payment added, Executed before payment updated, Executed after payment updated, Executed before payment deleted, Executed after payment deleted.
+
+File ---> application\models\Projects_model.php:
+   39:      $this->project_settings = hooks()->apply_filters('project_settings', $project_settings);
+   44:      $statuses = hooks()->apply_filters('before_get_project_statuses', [...]);
+   273:      $project            = hooks()->apply_filters('project_get', $project);
+   371:      $orderByString = hooks()->apply_filters('project_tasks_array_default_order', 'FIELD(status, 5), duedate IS NULL ASC, duedate');
+   385:      return hooks()->apply_filters('get_projects_tasks', $tasks, [...]);
+   478:      hooks()->do_action('before_remove_project_file', $id);
+   756:      $data = hooks()->apply_filters('before_add_project', $data);
+   853:      hooks()->do_action('after_add_project', $insert_id);
+   1025:      $data = hooks()->apply_filters('before_update_project', $data, $id);
+   1053:      hooks()->do_action('project_status_changed', [...]);
+   1071:      hooks()->do_action('after_update_project', $id);
+   1099:      hooks()->do_action('after_project_customer_email_sent', [...]);
+   1119:      hooks()->do_action('project_status_changed', [...]);
+   1329:      hooks()->do_action('after_project_staff_added_as_member', [...]);
+   1610:      $_data = hooks()->apply_filters('before_add_project_discussion_comment', $_data, $discussion_id);
+   1698:      hooks()->do_action('after_add_discussion_comment', $insert_id);
+   2096:      hooks()->do_action('project_copied', [...]);
+   2181:      hooks()->do_action('before_project_deleted', $project_id);
+   2279:      hooks()->do_action('after_project_deleted', $project_id);
+   2362:      $data = hooks()->apply_filters('before_log_project_activity', $data);
+VI: Hook can thiệp vào project settings, Thực hiện trước khi get project statuses, Hook can thiệp vào project get, Hook can thiệp vào project tasks array default order, Hook can thiệp vào get projects tasks, Thực hiện trước khi remove project file, Thực hiện trước khi add project, Thực hiện sau khi add project, Thực hiện trước khi update project, Hook can thiệp vào project status changed, Thực hiện sau khi update project, Thực hiện sau khi project customer email sent, Thực hiện sau khi project staff added as member, Thực hiện trước khi add project discussion comment, Thực hiện sau khi add discussion comment, Hook can thiệp vào project copied, Thực hiện trước khi project deleted, Thực hiện sau khi project deleted, Thực hiện trước khi log project activity.
+EN: Hook to interact with project settings, Executed before get project statuses, Hook to interact with project get, Hook to interact with project tasks array default order, Hook to interact with get projects tasks, Executed before remove project file, Executed before add project, Executed after add project, Executed before update project, Hook to interact with project status changed, Executed after update project, Executed after project customer email sent, Executed after project staff added as member, Executed before add project discussion comment, Executed after add discussion comment, Hook to interact with project copied, Executed before project deleted, Executed after project deleted, Executed before log project activity.
+
+File ---> application\models\Proposals_model.php:
+   16:      $this->statuses = hooks()->apply_filters('before_set_proposal_statuses', [...]);
+   94:      $hook = hooks()->apply_filters('before_create_proposal', [...]);
+   160:      hooks()->do_action('proposal_created', $insert_id);
+   225:      $hook = hooks()->apply_filters('before_proposal_updated', [...]);
+   326:      hooks()->do_action('after_proposal_updated', $id);
+   524:      hooks()->do_action('after_proposal_client_add_comment', $proposal->id);
+   532:      hooks()->do_action('after_proposal_staff_add_comment', $proposal->id);
+   786:      hooks()->do_action('proposal_accepted', $id);
+   793:      hooks()->do_action('proposal_declined', $id);
+   823:      hooks()->do_action('before_proposal_deleted', $id);
+   890:      hooks()->do_action('after_proposal_deleted', $id);
+   995:      hooks()->do_action('after_proposal_expiry_reminder_sent', $id);
+   1019:      hooks()->do_action('proposal_sent', $id);
+   1197:      hooks()->do_action('after_proposal_converted_to_invoice', ['proposal_id' => $id, 'invoice_id' => $invoice_id]);
+VI: Thực hiện trước khi set proposal statuses, Thực hiện trước khi create proposal, Hook can thiệp vào proposal created, Thực hiện trước khi proposal updated, Thực hiện sau khi proposal updated, Thực hiện sau khi proposal client add comment, Thực hiện sau khi proposal staff add comment, Hook can thiệp vào proposal accepted, Hook can thiệp vào proposal declined, Thực hiện trước khi proposal deleted, Thực hiện sau khi proposal deleted, Thực hiện sau khi proposal expiry reminder sent, Hook can thiệp vào proposal sent, Thực hiện sau khi proposal converted to invoice.
+EN: Executed before set proposal statuses, Executed before create proposal, Hook to interact with proposal created, Executed before proposal updated, Executed after proposal updated, Executed after proposal client add comment, Executed after proposal staff add comment, Hook to interact with proposal accepted, Hook to interact with proposal declined, Executed before proposal deleted, Executed after proposal deleted, Executed after proposal expiry reminder sent, Hook to interact with proposal sent, Executed after proposal converted to invoice.
+
+File ---> application\models\Settings_model.php:
+   40:      $data         = hooks()->apply_filters('before_settings_updated', $data);
+   82:      $hook_data          = hooks()->apply_filters('before_single_setting_updated_in_loop', $hook_data);
+VI: Thực hiện trước khi settings updated, Thực hiện trước khi single setting updated in loop.
+EN: Executed before settings updated, Executed before single setting updated in loop.
+
+File ---> application\models\Staff_model.php:
+   17:      hooks()->do_action('before_delete_staff_member', [...]);
+   326:      hooks()->do_action('staff_member_deleted', [...]);
+   405:      $data = hooks()->apply_filters('before_create_staff_member', $data);
+   500:      hooks()->do_action('staff_member_created', $staffid);
+   523:      $data = hooks()->apply_filters('before_update_staff_member', $data, $id);
+   651:      hooks()->do_action('staff_member_updated', $id);
+   684:      $data = hooks()->apply_filters('before_staff_update_profile', $data, $id);
+   700:      hooks()->do_action('staff_member_profile_updated', $id);
+   717:      $data = hooks()->apply_filters('before_staff_change_password', $data, $userid);
+   761:      $status = hooks()->apply_filters('before_staff_status_change', $status, $id);
+   769:      hooks()->do_action('after_staff_status_change', $id);
+VI: Thực hiện trước khi delete staff member, Hook can thiệp vào staff member deleted, Thực hiện trước khi create staff member, Hook can thiệp vào staff member created, Thực hiện trước khi update staff member, Hook can thiệp vào staff member updated, Thực hiện trước khi staff update profile, Hook can thiệp vào staff member profile updated, Thực hiện trước khi staff change password, Thực hiện trước khi staff status change, Thực hiện sau khi staff status change.
+EN: Executed before delete staff member, Hook to interact with staff member deleted, Executed before create staff member, Hook to interact with staff member created, Executed before update staff member, Hook to interact with staff member updated, Executed before staff update profile, Hook to interact with staff member profile updated, Executed before staff change password, Executed before staff status change, Executed after staff status change.
+
+File ---> application\models\Statement_model.php:
+   234:      return hooks()->apply_filters('statement', $result);
+VI: Hook can thiệp vào statement.
+EN: Hook to interact with statement.
+
+File ---> application\models\Tasks_model.php:
+   39:      $statuses = hooks()->apply_filters('before_get_task_statuses', [...]);
+   133:      return hooks()->apply_filters('get_task', $task);
+   210:      $_new_task_data = hooks()->apply_filters('before_add_task', $_new_task_data);
+   255:      hooks()->do_action('after_add_task', $insert_id);
+   532:      $data = hooks()->apply_filters('before_add_task', $data);
+   659:      hooks()->do_action('after_add_task', $insert_id);
+   759:      $data = hooks()->apply_filters('before_update_task', $data, $id);
+   795:      hooks()->do_action('after_update_task', $id);
+   868:      hooks()->do_action('task_checklist_item_created', ['task_id' => $data['taskid'], 'checklist_id' => $insert_id]);
+   1016:      hooks()->do_action('task_comment_added', ['task_id' => $data['taskid'], 'comment_id' => $insert_id]);
+   1073:      hooks()->do_action('task_follower_added', [...]);
+   1158:      hooks()->do_action('task_assignee_added', [...]);
+   1294:      $task_attachment_as_comment = hooks()->apply_filters('add_task_attachment_as_comment', 'true');
+   1352:      $task_comments_order = hooks()->apply_filters('task_comments_order', 'DESC');
+   1400:      hooks()->do_action('task_comment_updated', [...]);
+   1449:      hooks()->do_action('task_comment_deleted', ['task_id' => $comment->taskid, 'comment_id' => $id]);
+   1575:      hooks()->do_action('task_status_changed', ['status' => $status, 'task_id' => $task_id]);
+   1623:      hooks()->do_action('task_status_changed', ['status' => $status, 'task_id' => $id]);
+   1700:      hooks()->do_action('task_deleted', $id);
+   1911:      hooks()->do_action('task_timer_started', ['task_id' => $task_id, 'timer_id' => $_new_timer_id]);
+   1922:      $end_time = hooks()->apply_filters('before_task_timer_stopped', time(), [...]);
+   2204:      hooks()->do_action('task_timer_deleted', $timesheet);
+   2283:      return hooks()->apply_filters('should_staff_receive_task_notification', ($this->is_task_assignee($staffid, $taskid);
+VI: Thực hiện trước khi get task statuses, Hook can thiệp vào get task, Thực hiện trước khi add task, Thực hiện sau khi add task, Thực hiện trước khi update task, Thực hiện sau khi update task, Hook can thiệp vào task checklist item created, Hook can thiệp vào task comment added, Hook can thiệp vào task follower added, Hook can thiệp vào task assignee added, Hook can thiệp vào add task attachment as comment, Hook can thiệp vào task comments order, Hook can thiệp vào task comment updated, Hook can thiệp vào task comment deleted, Hook can thiệp vào task status changed, Hook can thiệp vào task deleted, Hook can thiệp vào task timer started, Thực hiện trước khi task timer stopped, Hook can thiệp vào task timer deleted, Hook can thiệp vào should staff receive task notification.
+EN: Executed before get task statuses, Hook to interact with get task, Executed before add task, Executed after add task, Executed before update task, Executed after update task, Hook to interact with task checklist item created, Hook to interact with task comment added, Hook to interact with task follower added, Hook to interact with task assignee added, Hook to interact with add task attachment as comment, Hook to interact with task comments order, Hook to interact with task comment updated, Hook to interact with task comment deleted, Hook to interact with task status changed, Hook to interact with task deleted, Hook to interact with task timer started, Executed before task timer stopped, Hook to interact with task timer deleted, Hook to interact with should staff receive task notification.
+
+File ---> application\models\Taxes_model.php:
+   40:      $data = hooks()->apply_filters('before_tax_created', $data);
+   48:      hooks()->do_action('after_tax_created', [...]);
+   82:      $data = hooks()->apply_filters('before_update_tax', $data, $taxid);
+   105:      hooks()->do_action('after_update_tax', [...]);
+VI: Thực hiện trước khi tax created, Thực hiện sau khi tax created, Thực hiện trước khi update tax, Thực hiện sau khi update tax.
+EN: Executed before tax created, Executed after tax created, Executed before update tax, Executed after update tax.
+
+File ---> application\models\Tickets_model.php:
+   51:      $data = hooks()->apply_filters('piped_ticket_data', $data);
+   471:      hooks()->apply_filters('ticket_message_without_html_for_non_admin', true);
+   482:      $data            = hooks()->apply_filters('before_ticket_reply_add', $data, $id, $admin);
+   499:      $newStatus = hooks()->apply_filters (...);
+   534:      hooks()->do_action('after_ticket_status_changed', [...]);
+   608:      hooks()->do_action('after_ticket_reply_added', [...]);
+   629:      hooks()->do_action('before_delete_ticket_reply', ['ticket_id' => $ticket_id, 'reply_id' => $reply_id]);
+   726:      $ticket_replies_order = hooks()->apply_filters('ticket_replies_order', $ticket_replies_order);
+   819:      hooks()->apply_filters('ticket_message_without_html_for_non_admin', true);
+   841:      $data            = hooks()->apply_filters('before_ticket_created', $data, $admin);
+   935:      hooks()->do_action('ticket_created', $ticketid);
+   974:      hooks()->do_action('before_ticket_deleted', $ticketid);
+   1035:      hooks()->do_action('after_ticket_deleted', $ticketid);
+   1051:      $data         = hooks()->apply_filters('before_ticket_settings_updated', $data);
+   1100:      hooks()->do_action (...);
+   1184:      hooks()->do_action('after_ticket_status_changed', [...]);
+VI: Hook can thiệp vào piped ticket data, Hook can thiệp vào ticket message without html for non admin, Thực hiện trước khi ticket reply add, Hook này dùng để can thiệp vào quy trình thực thi., Thực hiện sau khi ticket status changed, Thực hiện sau khi ticket reply added, Thực hiện trước khi delete ticket reply, Hook can thiệp vào ticket replies order, Thực hiện trước khi ticket created, Hook can thiệp vào ticket created, Thực hiện trước khi ticket deleted, Thực hiện sau khi ticket deleted, Thực hiện trước khi ticket settings updated.
+EN: Hook to interact with piped ticket data, Hook to interact with ticket message without html for non admin, Executed before ticket reply add, This hook is used to intercept the execution flow., Executed after ticket status changed, Executed after ticket reply added, Executed before delete ticket reply, Hook to interact with ticket replies order, Executed before ticket created, Hook to interact with ticket created, Executed before ticket deleted, Executed after ticket deleted, Executed before ticket settings updated.
+
+File ---> application\models\Todo_model.php:
+   12:      $this->todo_limit = hooks()->apply_filters('todos_limit', 10);
+VI: Hook can thiệp vào todos limit.
+EN: Hook to interact with todos limit.
+
+File ---> application\models\Utilities_model.php:
+   44:      $data = hooks()->apply_filters('event_update_data', $data, $data['eventid']);
+   55:      $data = hooks()->apply_filters('event_create_data', $data);
+   142:      $data = hooks()->apply_filters('before_fetch_events', $data, $hook);
+   512:      return hooks()->apply_filters('calendar_data', $data, [...]);
+VI: Hook can thiệp vào event update data, Hook can thiệp vào event create data, Thực hiện trước khi fetch events, Hook can thiệp vào calendar data.
+EN: Hook to interact with event update data, Hook to interact with event create data, Executed before fetch events, Hook to interact with calendar data.
+
+File ---> application\services\CustomerProfileBadges.php:
+   36:      $hook = hooks()->apply_filters('customers_profile_tab_badge', [...]);
+VI: Hook can thiệp vào customers profile tab badge.
+EN: Hook to interact with customers profile tab badge.
+
+File ---> application\services\LeadProfileBadges.php:
+   28:      $count = hooks()->apply_filters('lead_tab_badge_count', $count, [...]);
+VI: Hook can thiệp vào lead tab badge count.
+EN: Hook to interact with lead tab badge count.
+
+File ---> application\services\ViewsTracking.php:
+   47:      hooks()->do_action('before_insert_views_tracking', [...]);
+VI: Thực hiện trước khi insert views tracking.
+EN: Executed before insert views tracking.
+
+File ---> application\services\ai\AiTicket.php:
+   19:      hooks()->apply_filters('before_ai_tickets_summarize_ticket', $prompt, $ticket);
+   29:      hooks()->apply_filters('before_ai_tickets_suggest_ticket_reply', $prompt, $ticket);
+VI: Thực hiện trước khi ai tickets summarize ticket, Thực hiện trước khi ai tickets suggest ticket reply.
+EN: Executed before ai tickets summarize ticket, Executed before ai tickets suggest ticket reply.
+
+File ---> application\services\messages\IsCronSetupRequired.php:
+   87:      $using_cron_features = hooks()->apply_filters('numbers_of_features_using_cron_job', $using_cron_features);
+   88:      $used_features       = hooks()->apply_filters('used_cron_features', $used_features);
+VI: Hook can thiệp vào numbers of features using cron job, Hook can thiệp vào used cron features.
+EN: Hook to interact with numbers of features using cron job, Hook to interact with used cron features.
+
+File ---> application\services\upgrade\Response.php:
+   11:      hooks()->do_action('auto_upgrade_failed_to_extract_zip_file', $zipFile);
+VI: Hook can thiệp vào auto upgrade failed to extract zip file.
+EN: Hook to interact with auto upgrade failed to extract zip file.
+
+File ---> application\third_party\action_hooks.php:
+   7:      * Use hooks()->do_action, hooks()->apply_filters, hooks()->add_action, hooks()->add_filter;
+   233:      _deprecated_function('do_action','2.3.0','hooks()->do_action($tag, $arg = \'\')');
+   235:      return hooks()->apply_filters($name, $arguments);
+VI: Hook này dùng để can thiệp vào quy trình thực thi..
+EN: This hook is used to intercept the execution flow..
+
+File ---> application\views\admin\clients\client_js.php:
+   182:      <?php echo hooks()->apply_filters('projects_table_default_order', json_encode([5, 'asc'])); ?>);
+   292:      <?php if (hooks()->apply_filters('contact_email_required', 'true') === 'true') { ?>;
+   297:      <?php if (hooks()->apply_filters('contact_email_unique', 'true') === 'true') { ?>;
+VI: Hook can thiệp vào projects table default order, Hook can thiệp vào contact email required, Hook can thiệp vào contact email unique.
+EN: Hook to interact with projects table default order, Hook to interact with contact email required, Hook to interact with contact email unique.
+
+File ---> application\views\admin\clients\groups\profile.php:
+   31:      <?= hooks()->apply_filters('customer_profile_tab_custom_fields_text', _l('custom_fields')); ?>;
+   41:      <?php hooks()->do_action('after_customer_billing_and_shipping_tab', $client ?? false); ?>;
+   52:      <?php hooks()->do_action('after_customer_admins_tab', $client); ?>;
+   58:      <?php hooks()->do_action('after_custom_profile_tab_content', $client ?? false); ?>;
+   87:      <?php hooks()->do_action('before_customer_profile_company_field', $client ?? null); ?>;
+   92:      <?php hooks()->do_action('after_customer_profile_company_field', $client ?? null); ?>;
+   97:      <?php hooks()->do_action('before_customer_profile_phone_field', $client ?? null); ?>;
+   100:      <?php hooks()->do_action('after_customer_profile_company_phone', $client ?? null); ?>;
+VI: Hook can thiệp vào customer profile tab custom fields text, Thực hiện sau khi customer billing and shipping tab, Thực hiện sau khi customer admins tab, Thực hiện sau khi custom profile tab content, Thực hiện trước khi customer profile company field, Thực hiện sau khi customer profile company field, Thực hiện trước khi customer profile phone field, Thực hiện sau khi customer profile company phone.
+EN: Hook to interact with customer profile tab custom fields text, Executed after customer billing and shipping tab, Executed after customer admins tab, Executed after custom profile tab content, Executed before customer profile company field, Executed after customer profile company field, Executed before customer profile phone field, Executed after customer profile company phone.
+
+File ---> application\views\admin\clients\groups\proposals.php:
+   42:      $table_data = hooks()->apply_filters('proposals_relation_table_columns', $table_data);
+VI: Hook can thiệp vào proposals relation table columns.
+EN: Hook to interact with proposals relation table columns.
+
+File ---> application\views\admin\clients\manage.php:
+   211:      $table_data = hooks()->apply_filters('customers_table_columns', $table_data);
+   232:      <?= hooks()->apply_filters('customers_table_default_order', json_encode([2, 'asc'])); ?>;
+VI: Hook can thiệp vào customers table columns, Hook can thiệp vào customers table default order.
+EN: Hook to interact with customers table columns, Hook to interact with customers table default order.
+
+File ---> application\views\admin\clients\modals\contact.php:
+   311:      <?php hooks()->do_action('after_contact_modal_content_loaded'); ?>;
+VI: Thực hiện sau khi contact modal content loaded.
+EN: Executed after contact modal content loaded.
+
+File ---> application\views\admin\contracts\contract.php:
+   95:      <?php hooks()->do_action('after_contract_view_as_client_link', $contract); ?>;
+   399:      <?= hooks()->apply_filters('new_contract_default_content', '<span class="text-danger text-uppercase mtop15 editor-add-content-notice"> ' . _l('click_to_add_content') . '</span>') ?>;
+VI: Thực hiện sau khi contract view as client link, Hook can thiệp vào new contract default content.
+EN: Executed after contract view as client link, Hook to interact with new contract default content.
+
+File ---> application\views\admin\contracts\manage.php:
+   117:      <?= hooks()->apply_filters('contracts_table_default_order', json_encode([6, 'asc'])); ?>;
+VI: Hook can thiệp vào contracts table default order.
+EN: Hook to interact with contracts table default order.
+
+File ---> application\views\admin\contracts\table_html.php:
+   31:      $table_data = hooks()->apply_filters('contracts_table_columns', $table_data);
+VI: Hook can thiệp vào contracts table columns.
+EN: Hook to interact with contracts table columns.
+
+File ---> application\views\admin\credit_notes\credit_note.php:
+   239:      $credit_note_currency_attr = hooks()->apply_filters('credit_note_currency_attributes', $credit_note_currency_attr);
+VI: Hook can thiệp vào credit note currency attributes.
+EN: Hook to interact with credit note currency attributes.
+
+File ---> application\views\admin\custom_fields\customfield.php:
+   101:      <?php hooks()->do_action('after_custom_fields_select_options', $custom_field ?? null); ?>;
+VI: Thực hiện sau khi custom fields select options.
+EN: Executed after custom fields select options.
+
+File ---> application\views\admin\dashboard\dashboard.php:
+   19:      <?php hooks()->do_action('before_start_render_dashboard_content'); ?>;
+   27:      <?php hooks()->do_action('after_dashboard_top_container'); ?>;
+   36:      <?php hooks()->do_action('after_dashboard_half_container'); ?>;
+   57:      <?php hooks()->do_action('after_dashboard'); ?>;
+VI: Thực hiện trước khi start render dashboard content, Thực hiện sau khi dashboard top container, Thực hiện sau khi dashboard half container, Thực hiện sau khi dashboard.
+EN: Executed before start render dashboard content, Executed after dashboard top container, Executed after dashboard half container, Executed after dashboard.
+
+File ---> application\views\admin\dashboard\widgets\user_data.php:
+   68:      <?php hooks()->do_action('after_user_data_widget_tabs'); ?>;
+   156:      <?php hooks()->do_action('after_user_data_widge_tabs_content'); ?>;
+VI: Thực hiện sau khi user data widget tabs, Thực hiện sau khi user data widge tabs content.
+EN: Executed after user data widget tabs, Executed after user data widge tabs content.
+
+File ---> application\views\admin\estimate_request\estimate_request.php:
+   281:      <?php if (hooks()->apply_filters('contact_email_required', 'true') === 'true') { ?>;
+   285:      <?php if (hooks()->apply_filters('contact_email_unique', 'true') === 'true') { ?>;
+VI: Hook can thiệp vào contact email required, Hook can thiệp vào contact email unique.
+EN: Hook to interact with contact email required, Hook to interact with contact email unique.
+
+File ---> application\views\admin\estimate_request\forms.php:
+   16:      <?php hooks()->do_action('forms_table_start'); ?>;
+VI: Hook can thiệp vào forms table start.
+EN: Hook to interact with forms table start.
+
+File ---> application\views\admin\estimate_request\manage_request.php:
+   51:      $table_data = hooks()->apply_filters('estimate_request_table_columns', $table_data);
+VI: Hook can thiệp vào estimate request table columns.
+EN: Hook to interact with estimate request table columns.
+
+File ---> application\views\admin\estimates\table_html.php:
+   31:      $table_data = hooks()->apply_filters('estimates_table_columns', $table_data);
+VI: Hook can thiệp vào estimates table columns.
+EN: Hook to interact with estimates table columns.
+
+File ---> application\views\admin\expenses\expense.php:
+   71:      <?php hooks()->do_action('before_expense_form_name', $expense ?? null); ?>;
+   178:      $currency_attr = hooks()->apply_filters('expense_currency_attributes', $currency_attr);
+VI: Thực hiện trước khi expense form name, Hook can thiệp vào expense currency attributes.
+EN: Executed before expense form name, Hook to interact with expense currency attributes.
+
+File ---> application\views\admin\expenses\manage.php:
+   133:      <?= hooks()->apply_filters('expenses_table_default_order', json_encode([6, 'desc'])); ?>;
+VI: Hook can thiệp vào expenses table default order.
+EN: Hook to interact with expenses table default order.
+
+File ---> application\views\admin\expenses\table_html.php:
+   49:      $table_data = hooks()->apply_filters('expenses_table_columns', $table_data);
+VI: Hook can thiệp vào expenses table columns.
+EN: Hook to interact with expenses table columns.
+
+File ---> application\views\admin\gdpr\index.php:
+   65:      <?php hooks()->do_action('before_admin_gdpr_settings'); ?>;
+VI: Thực hiện trước khi admin gdpr settings.
+EN: Executed before admin gdpr settings.
+
+File ---> application\views\admin\includes\alerts.php:
+   44:      <?php hooks()->do_action('before_start_render_content'); ?>;
+VI: Thực hiện trước khi start render content.
+EN: Executed before start render content.
+
+File ---> application\views\admin\includes\aside.php:
+   65:      hooks()->do_action('before_render_aside_menu');
+   123:      <?php hooks()->do_action('after_render_single_aside_menu', $item); ?>;
+   142:      <?php hooks()->do_action('after_render_aside_menu'); ?>;
+VI: Thực hiện trước khi render aside menu, Thực hiện sau khi render single aside menu, Thực hiện sau khi render aside menu.
+EN: Executed before render aside menu, Executed after render single aside menu, Executed after render aside menu.
+
+File ---> application\views\admin\includes\elfinder_tinymce.php:
+   26:      <?php hooks()->do_action('elfinder_tinymce_head'); ?>;
+VI: Hook can thiệp vào elfinder tinymce head.
+EN: Hook to interact with elfinder tinymce head.
+
+File ---> application\views\admin\includes\head.php:
+   37:      <?php hooks()->do_action('after_body_start'); ?>;
+VI: Thực hiện sau khi body start.
+EN: Executed after body start.
+
+File ---> application\views\admin\includes\header.php:
+   18:      href="<?= hooks()->apply_filters('admin_header_logo_href', admin_url()); ?>">;
+   23:      href="<?= hooks()->apply_filters('admin_header_logo_href', admin_url()); ?>">;
+   172:      <?php hooks()->do_action('admin_navbar_start'); ?>;
+   234:      <?php hooks()->do_action('admin_navbar_end'); ?>;
+VI: Hook can thiệp vào admin header logo href, Hook can thiệp vào admin navbar start, Hook can thiệp vào admin navbar end.
+EN: Hook to interact with admin header logo href, Hook to interact with admin navbar start, Hook to interact with admin navbar end.
+
+File ---> application\views\admin\includes\modals\newsfeed_form.php:
+   39:      <?= form_hidden('total_pages_newsfeed', hooks()->apply_filters('total_pages_newsfeed', total_rows(db_prefix() . 'newsfeed_posts') / 10)); ?>;
+VI: Hook can thiệp vào total pages newsfeed.
+EN: Hook to interact with total pages newsfeed.
+
+File ---> application\views\admin\includes\scripts.php:
+   4:      <?php hooks()->do_action('before_js_scripts_render'); ?>;
+   27:      <?php $pusher_options = hooks()->apply_filters('pusher_options', [['disableStats' => true]]);
+VI: Thực hiện trước khi js scripts render, Hook can thiệp vào pusher options.
+EN: Executed before js scripts render, Hook to interact with pusher options.
+
+File ---> application\views\admin\includes\setup_menu.php:
+   76:      <?php hooks()->do_action('after_render_single_setup_menu', $item); ?>;
+   81:      <a href="<?= hooks()->apply_filters('help_menu_item_link', 'https://help.perfexcrm.com'); ?>";
+   83:      <?= hooks()->apply_filters('help_menu_item_text', _l('setup_help')); ?>;
+VI: Thực hiện sau khi render single setup menu, Hook can thiệp vào help menu item link, Hook can thiệp vào help menu item text.
+EN: Executed after render single setup menu, Hook to interact with help menu item link, Hook to interact with help menu item text.
+
+File ---> application\views\admin\invoice_items\item.php:
+   88:      <?php hooks()->do_action('before_invoice_item_modal_form_close'); ?>;
+VI: Thực hiện trước khi invoice item modal form close.
+EN: Executed before invoice item modal form close.
+
+File ---> application\views\admin\invoice_items\manage.php:
+   44:      <?php hooks()->do_action('before_items_page_content'); ?>;
+VI: Thực hiện trước khi items page content.
+EN: Executed before items page content.
+
+File ---> application\views\admin\invoices\table_html.php:
+   27:      $table_data = hooks()->apply_filters('invoices_table_columns', $table_data);
+VI: Hook can thiệp vào invoices table columns.
+EN: Hook to interact with invoices table columns.
+
+File ---> application\views\admin\leads\_kan_ban_card.php:
+   63:      <?php hooks()->do_action('before_leads_kanban_card_icons', $lead); ?>;
+   74:      <?php hooks()->do_action('after_leads_kanban_card_icons', $lead); ?>;
+VI: Thực hiện trước khi leads kanban card icons, Thực hiện sau khi leads kanban card icons.
+EN: Executed before leads kanban card icons, Executed after leads kanban card icons.
+
+File ---> application\views\admin\leads\email_integration.php:
+   18:      <?php hooks()->do_action('before_leads_email_integration_form'); ?>;
+   100:      <?= render_input('check_every', 'leads_email_integration_check_every', $mail->check_every, 'number', ['min' => hooks()->apply_filters('leads_email_integration_check_every', 10), 'data-ays-ignore' => true]); ?>;
+VI: Thực hiện trước khi leads email integration form, Hook can thiệp vào leads email integration check every.
+EN: Executed before leads email integration form, Hook to interact with leads email integration check every.
+
+File ---> application\views\admin\leads\forms.php:
+   15:      <?php hooks()->do_action('forms_table_start'); ?>;
+VI: Hook can thiệp vào forms table start.
+EN: Hook to interact with forms table start.
+
+File ---> application\views\admin\leads\lead.php:
+   67:      <?= hooks()->apply_filters('lead_email_activity_subject', _l('lead_email_activity')); ?>;
+   142:      <?php hooks()->do_action('after_lead_lead_tabs', $lead ?? null); ?>;
+   157:      <?php hooks()->do_action('before_lead_email_activity', ['lead' => $lead, 'email_activity' => $mail_activity]); ?>;
+   179:      <?php hooks()->do_action('after_lead_email_activity', ['lead_id' => $lead->id, 'emails' => $mail_activity]); ?>;
+   290:      $table_data = hooks()->apply_filters('proposals_relation_table_columns', $table_data);
+   428:      <?php hooks()->do_action('after_lead_tabs_content', $lead ?? null); ?>;
+   433:      <?php hooks()->do_action('lead_modal_profile_bottom', (isset($lead) ? $lead->id : '')); ?>;
+VI: Hook can thiệp vào lead email activity subject, Thực hiện sau khi lead lead tabs, Thực hiện trước khi lead email activity, Thực hiện sau khi lead email activity, Hook can thiệp vào proposals relation table columns, Thực hiện sau khi lead tabs content, Hook can thiệp vào lead modal profile bottom.
+EN: Hook to interact with lead email activity subject, Executed after lead lead tabs, Executed before lead email activity, Executed after lead email activity, Hook to interact with proposals relation table columns, Executed after lead tabs content, Hook to interact with lead modal profile bottom.
+
+File ---> application\views\admin\leads\manage_leads.php:
+   275:      $table_data = hooks()->apply_filters('leads_table_columns', $table_data);
+VI: Hook can thiệp vào leads table columns.
+EN: Hook to interact with leads table columns.
+
+File ---> application\views\admin\modules\list.php:
+   51:      $action_links                                     = hooks()->apply_filters("module_{$system_name}_action_links", $action_links);
+   105:      hooks()->apply_filters("module_{$system_name}_description_info", $module_description_info);
+VI: Hook này dùng để can thiệp vào quy trình thực thi..
+EN: This hook is used to intercept the execution flow..
+
+File ---> application\views\admin\paymentmodes\paymentmode.php:
+   48:      <?php hooks()->do_action('before_paymentmode_modal_form_close'); ?>;
+VI: Thực hiện trước khi paymentmode modal form close.
+EN: Executed before paymentmode modal form close.
+
+File ---> application\views\admin\payments\manage.php:
+   18:      <?= hooks()->apply_filters('payments_table_default_order', json_encode([0, 'desc'])); ?>;
+VI: Hook can thiệp vào payments table default order.
+EN: Hook to interact with payments table default order.
+
+File ---> application\views\admin\payments\payment.php:
+   211:      <?php hooks()->do_action('before_admin_edit_payment_form_submit', $payment); ?>;
+VI: Thực hiện trước khi admin edit payment form submit.
+EN: Executed before admin edit payment form submit.
+
+File ---> application\views\admin\projects\manage.php:
+   60:      <?= hooks()->apply_filters('projects_table_default_order', json_encode([5, 'asc'])); ?>;
+VI: Hook can thiệp vào projects table default order.
+EN: Hook to interact with projects table default order.
+
+File ---> application\views\admin\projects\project_overview.php:
+   15:      <?php hooks()->do_action('admin_area_after_project_progress') ?>;
+   45:      <?php hooks()->do_action('admin_project_overview_end_of_project_overview_left', $project) ?>;
+   175:      <?php hooks()->do_action('admin_project_overview_end_of_project_overview_right', $project) ?>;
+VI: Hook can thiệp vào admin area after project progress, Hook can thiệp vào admin project overview end of project overview left, Hook can thiệp vào admin project overview end of project overview right.
+EN: Hook to interact with admin area after project progress, Hook to interact with admin project overview end of project overview left, Hook to interact with admin project overview end of project overview right.
+
+File ---> application\views\admin\projects\project_timesheets.php:
+   45:      $table_data = hooks()->apply_filters('projects_timesheets_table_columns', $table_data);
+VI: Hook can thiệp vào projects timesheets table columns.
+EN: Hook to interact with projects timesheets table columns.
+
+File ---> application\views\admin\projects\table_html.php:
+   27:      $table_data = hooks()->apply_filters('projects_table_columns', $table_data);
+VI: Hook can thiệp vào projects table columns.
+EN: Hook to interact with projects table columns.
+
+File ---> application\views\admin\projects\view.php:
+   195:      <?php hooks()->do_action('before_render_project_view', $project->id); ?>;
+   271:      '<?= hooks()->apply_filters('admin_project_progress_color', '#84c529'); ?>';
+VI: Thực hiện trước khi render project view, Hook can thiệp vào admin project progress color.
+EN: Executed before render project view, Hook to interact with admin project progress color.
+
+File ---> application\views\admin\proposals\proposal.php:
+   148:      $currency_attr = hooks()->apply_filters('proposal_currency_attributes', $currency_attr);
+VI: Hook can thiệp vào proposal currency attributes.
+EN: Hook to interact with proposal currency attributes.
+
+File ---> application\views\admin\search.php:
+   84:      <li><?php echo hooks()->apply_filters('global_search_result_output', $output, ['result'=>$_result, 'type'=>$data['type']]); ?></li>;
+VI: Hook can thiệp vào global search result output.
+EN: Hook to interact with global search result output.
+
+File ---> application\views\admin\settings\all.php:
+   94:      <?php hooks()->do_action('before_settings_group_view', $group); ?>;
+   96:      <?php hooks()->do_action('after_settings_group_view', $group); ?>;
+   315:      <?php hooks()->do_action('settings_group_end', $group); ?>;
+VI: Thực hiện trước khi settings group view, Thực hiện sau khi settings group view, Hook can thiệp vào settings group end.
+EN: Executed before settings group view, Executed after settings group view, Hook to interact with settings group end.
+
+File ---> application\views\admin\settings\includes\ai.php:
+   27:      <?php hooks()->do_action('settings_ai'); ?>;
+VI: Hook can thiệp vào settings ai.
+EN: Hook to interact with settings ai.
+
+File ---> application\views\admin\settings\includes\cronjob.php:
+   40:      <?php hooks()->do_action('after_cron_settings_last_tab'); ?>;
+   264:      <?php hooks()->do_action('after_cron_settings_last_tab_content'); ?>;
+VI: Thực hiện sau khi cron settings last tab, Thực hiện sau khi cron settings last tab content.
+EN: Executed after cron settings last tab, Executed after cron settings last tab content.
+
+File ---> application\views\admin\settings\includes\e_sign.php:
+   9:      <?php hooks()->do_action('after_settings_e_sign_fields'); ?>;
+VI: Thực hiện sau khi settings e sign fields.
+EN: Executed after settings e sign fields.
+
+File ---> application\views\admin\settings\includes\info.php:
+   1:      <?php hooks()->do_action('before_system_info'); ?>;
+   538:      hooks()->do_action('after_system_info_files_permissions');
+   540:      $permissionsIssues = hooks()->apply_filters('system_info_files_permissions_issue', $permissionsIssues);
+   548:      <?php hooks()->do_action('after_system_last_info_row'); ?>;
+VI: Thực hiện trước khi system info, Thực hiện sau khi system info files permissions, Hook can thiệp vào system info files permissions issue, Thực hiện sau khi system last info row.
+EN: Executed before system info, Executed after system info files permissions, Hook to interact with system info files permissions issue, Executed after system last info row.
+
+File ---> application\views\admin\settings\includes\leads.php:
+   2:      <?php hooks()->do_action('before_leads_settings'); ?>;
+   36:      $validationFields = hooks()->apply_filters('lead_available_dupicate_validation_fields_option', $validationFields);
+   88:      <?php hooks()->do_action('after_leads_settings'); ?>;
+VI: Thực hiện trước khi leads settings, Hook can thiệp vào lead available dupicate validation fields option, Thực hiện sau khi leads settings.
+EN: Executed before leads settings, Hook to interact with lead available dupicate validation fields option, Executed after leads settings.
+
+File ---> application\views\admin\settings\includes\localization.php:
+   62:      <?php $subtext = hooks()->apply_filters('settings_language_subtext', '', $availableLanguage); ?>;
+   78:      <?php $subtext = hooks()->apply_filters('settings_language_subtext', '', $availableLanguage); ?>;
+VI: Hook can thiệp vào settings language subtext.
+EN: Hook to interact with settings language subtext.
+
+File ---> application\views\admin\settings\includes\misc.php:
+   50:      <?php hooks()->do_action('after_misc_settings'); ?>;
+VI: Thực hiện sau khi misc settings.
+EN: Executed after misc settings.
+
+File ---> application\views\admin\settings\includes\payment_gateways.php:
+   34:      <?php hooks()->do_action('before_render_payment_gateway_settings', $gateway); ?>;
+VI: Thực hiện trước khi render payment gateway settings.
+EN: Executed before render payment gateway settings.
+
+File ---> application\views\admin\settings\includes\pdf.php:
+   95:      <?php hooks()->do_action('after_pdf_signature_settings_fields'); ?>;
+   216:      <?php hooks()->do_action('after_pdf_document_formats'); ?>;
+VI: Thực hiện sau khi pdf signature settings fields, Thực hiện sau khi pdf document formats.
+EN: Executed after pdf signature settings fields, Executed after pdf document formats.
+
+File ---> application\views\admin\settings\includes\pusher.php:
+   8:      <?php hooks()->do_action('after_pusher_cluster_option'); ?>;
+VI: Thực hiện sau khi pusher cluster option.
+EN: Executed after pusher cluster option.
+
+File ---> application\views\admin\settings\includes\sms.php:
+   2:      hooks()->do_action('before_sms_gateways_settings');
+   119:      hooks()->do_action('after_sms_trigger_textarea_content', ['name' => $trigger_name, 'options' => $trigger_opts]);
+VI: Thực hiện trước khi sms gateways settings, Thực hiện sau khi sms trigger textarea content.
+EN: Executed before sms gateways settings, Executed after sms trigger textarea content.
+
+File ---> application\views\admin\settings\includes\tickets.php:
+   68:      <code><?= hooks()->apply_filters('cpanel_tickets_forwarder_path', FCPATH . 'pipe.php'); ?></code>;
+   89:      <code><?= hooks()->apply_filters('ticket_form_file_location_settings', VIEWPATH . 'forms/ticket.php'); ?></code>;
+VI: Hook can thiệp vào cpanel tickets forwarder path, Hook can thiệp vào ticket form file location settings.
+EN: Hook to interact with cpanel tickets forwarder path, Hook to interact with ticket form file location settings.
+
+File ---> application\views\admin\staff\member.php:
+   298:      hooks()->do_action('staff_render_permissions');
+VI: Hook can thiệp vào staff render permissions.
+EN: Hook to interact with staff render permissions.
+
+File ---> application\views\admin\staff\myprofile.php:
+   10:      <?php hooks()->do_action('before_staff_myprofile'); ?>;
+VI: Thực hiện trước khi staff myprofile.
+EN: Executed before staff myprofile.
+
+File ---> application\views\admin\subscriptions\manage.php:
+   50:      <?php hooks()->do_action('before_subscriptions_table'); ?>;
+VI: Thực hiện trước khi subscriptions table.
+EN: Executed before subscriptions table.
+
+File ---> application\views\admin\subscriptions\table_html.php:
+   55:      <?php echo hooks()->apply_filters('subscriptions_table_default_order', json_encode([6, 'desc'])); ?>;
+VI: Hook can thiệp vào subscriptions table default order.
+EN: Hook to interact with subscriptions table default order.
+
+File ---> application\views\admin\tables\all_contacts.php:
+   131:      $row = hooks()->apply_filters('all_contacts_table_row', $row, $aRow);
+VI: Hook can thiệp vào all contacts table row.
+EN: Hook to interact with all contacts table row.
+
+File ---> application\views\admin\tables\clients.php:
+   45:      $join = hooks()->apply_filters('customers_table_sql_join', $join);
+   51:      $aColumns = hooks()->apply_filters('customers_table_sql_columns', $aColumns);
+   164:      $row = hooks()->apply_filters('customers_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào customers table sql join, Hook can thiệp vào customers table sql columns, Hook can thiệp vào customers table row data.
+EN: Hook to interact with customers table sql join, Hook to interact with customers table sql columns, Hook to interact with customers table row data.
+
+File ---> application\views\admin\tables\contacts.php:
+   105:      $row = hooks()->apply_filters('admin_customer_contacts_table_row', $row, $aRow);
+VI: Hook can thiệp vào admin customer contacts table row.
+EN: Hook to interact with admin customer contacts table row.
+
+File ---> application\views\admin\tables\contracts.php:
+   67:      $aColumns = hooks()->apply_filters('contracts_table_sql_columns', $aColumns);
+   143:      $row = hooks()->apply_filters('contracts_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào contracts table sql columns, Hook can thiệp vào contracts table row data.
+EN: Hook to interact with contracts table sql columns, Hook to interact with contracts table row data.
+
+File ---> application\views\admin\tables\estimate_request.php:
+   49:      $aColumns = hooks()->apply_filters('estimate_request_table_sql_columns', $aColumns);
+   51:      $additionalColumns = hooks()->apply_filters('estimate_request_table_additional_columns_sql', [...]);
+   138:      $row = hooks()->apply_filters('estimate_request_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào estimate request table sql columns, Hook can thiệp vào estimate request table additional columns sql, Hook can thiệp vào estimate request table row data.
+EN: Hook to interact with estimate request table sql columns, Hook to interact with estimate request table additional columns sql, Hook to interact with estimate request table row data.
+
+File ---> application\views\admin\tables\estimates.php:
+   65:      $aColumns = hooks()->apply_filters('estimates_table_sql_columns', $aColumns);
+   150:      $row = hooks()->apply_filters('estimates_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào estimates table sql columns, Hook can thiệp vào estimates table row data.
+EN: Hook to interact with estimates table sql columns, Hook to interact with estimates table row data.
+
+File ---> application\views\admin\tables\expenses.php:
+   60:      $aColumns = hooks()->apply_filters('expenses_table_sql_columns', $aColumns);
+   186:      $row = hooks()->apply_filters('expenses_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào expenses table sql columns, Hook can thiệp vào expenses table row data.
+EN: Hook to interact with expenses table sql columns, Hook to interact with expenses table row data.
+
+File ---> application\views\admin\tables\includes\tasks_filter.php:
+   68:      $where = hooks()->apply_filters('tasks_table_sql_where', $where);
+VI: Hook can thiệp vào tasks table sql where.
+EN: Hook to interact with tasks table sql where.
+
+File ---> application\views\admin\tables\invoices.php:
+   63:      $aColumns = hooks()->apply_filters('invoices_table_sql_columns', $aColumns);
+   144:      $row = hooks()->apply_filters('invoices_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào invoices table sql columns, Hook can thiệp vào invoices table row data.
+EN: Hook to interact with invoices table sql columns, Hook to interact with invoices table row data.
+
+File ---> application\views\admin\tables\leads.php:
+   132:      $aColumns = hooks()->apply_filters('leads_table_sql_columns', $aColumns);
+   139:      $additionalColumns = hooks()->apply_filters('leads_table_additional_columns_sql', [...]);
+   280:      $row = hooks()->apply_filters('leads_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào leads table sql columns, Hook can thiệp vào leads table additional columns sql, Hook can thiệp vào leads table row data.
+EN: Hook to interact with leads table sql columns, Hook to interact with leads table additional columns sql, Hook to interact with leads table row data.
+
+File ---> application\views\admin\tables\projects.php:
+   55:      $aColumns = hooks()->apply_filters('projects_table_sql_columns', $aColumns);
+   140:      $row = hooks()->apply_filters('projects_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào projects table sql columns, Hook can thiệp vào projects table row data.
+EN: Hook to interact with projects table sql columns, Hook to interact with projects table row data.
+
+File ---> application\views\admin\tables\proposals.php:
+   60:      $aColumns = hooks()->apply_filters('proposals_table_sql_columns', $aColumns);
+   134:      $row = hooks()->apply_filters('proposals_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào proposals table sql columns, Hook can thiệp vào proposals table row data.
+EN: Hook to interact with proposals table sql columns, Hook to interact with proposals table row data.
+
+File ---> application\views\admin\tables\proposals_relations.php:
+   50:      $aColumns = hooks()->apply_filters('proposals_relation_table_sql_columns', $aColumns);
+VI: Hook can thiệp vào proposals relation table sql columns.
+EN: Hook to interact with proposals relation table sql columns.
+
+File ---> application\views\admin\tables\staff.php:
+   36:      $where = hooks()->apply_filters('staff_table_sql_where', []);
+   103:      $row = hooks()->apply_filters('staff_table_row', $row, $aRow);
+VI: Hook can thiệp vào staff table sql where, Hook can thiệp vào staff table row.
+EN: Hook to interact with staff table sql where, Hook to interact with staff table row.
+
+File ---> application\views\admin\tables\tasks.php:
+   54:      $aColumns = hooks()->apply_filters('tasks_table_sql_columns', $aColumns);
+   222:      $row = hooks()->apply_filters('tasks_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào tasks table sql columns, Hook can thiệp vào tasks table row data.
+EN: Hook to interact with tasks table sql columns, Hook to interact with tasks table row data.
+
+File ---> application\views\admin\tables\tasks_relations.php:
+   88:      $aColumns = hooks()->apply_filters('tasks_related_table_sql_columns', $aColumns);
+   237:      $row = hooks()->apply_filters('tasks_related_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào tasks related table sql columns, Hook can thiệp vào tasks related table row data.
+EN: Hook to interact with tasks related table sql columns, Hook to interact with tasks related table row data.
+
+File ---> application\views\admin\tables\tickets.php:
+   247:      $row                = hooks()->apply_filters('admin_tickets_table_row_data', $row, $aRow);
+VI: Hook can thiệp vào admin tickets table row data.
+EN: Hook to interact with admin tickets table row data.
+
+File ---> application\views\admin\tables\timesheets.php:
+   18:      $aColumns = hooks()->apply_filters('projects_timesheets_table_sql_columns', $aColumns);
+   25:      $join = hooks()->apply_filters('projects_timesheets_table_sql_join', $join);
+VI: Hook can thiệp vào projects timesheets table sql columns, Hook can thiệp vào projects timesheets table sql join.
+EN: Hook to interact with projects timesheets table sql columns, Hook to interact with projects timesheets table sql join.
+
+File ---> application\views\admin\tasks\_table.php:
+   35:      $table_data = hooks()->apply_filters('tasks_table_columns', $table_data);
+VI: Hook can thiệp vào tasks table columns.
+EN: Hook to interact with tasks table columns.
+
+File ---> application\views\admin\tasks\task.php:
+   52:      $task_copy_statuses = hooks()->apply_filters('task_copy_statuses', $task_statuses);
+   200:      <?php hooks()->do_action('task_priorities_select', (isset($task) ? $task : 0)); ?>;
+   365:      hooks()->do_action('task_modal_rel_type_select', ['task' => (isset($task) ? $task : 0), 'rel_type' => $rel_type]);
+VI: Hook can thiệp vào task copy statuses, Hook can thiệp vào task priorities select, Hook can thiệp vào task modal rel type select.
+EN: Hook to interact with task copy statuses, Hook to interact with task priorities select, Hook to interact with task modal rel type select.
+
+File ---> application\views\admin\tasks\tasks_filter_by.php:
+   5:      hooks()->do_action('tasks_filters_hidden_html');
+VI: Hook can thiệp vào tasks filters hidden html.
+EN: Hook to interact with tasks filters hidden html.
+
+File ---> application\views\admin\taxes\manage.php:
+   52:      <?php hooks()->do_action('before_taxes_modal_form_close'); ?>;
+VI: Thực hiện trước khi taxes modal form close.
+EN: Executed before taxes modal form close.
+
+File ---> application\views\admin\tickets\add.php:
+   99:      echo render_select('priority', $priorities, ['priorityid', 'name'], 'ticket_settings_priority', hooks()->apply_filters('new_ticket_priority_selected', 2), ['required' => 'true']); ?>;
+   234:      <?php hooks()->do_action('new_ticket_admin_page_loaded'); ?>;
+VI: Hook can thiệp vào new ticket priority selected, Hook can thiệp vào new ticket admin page loaded.
+EN: Hook to interact with new ticket priority selected, Hook to interact with new ticket admin page loaded.
+
+File ---> application\views\admin\tickets\list.php:
+   68:      <?php hooks()->do_action('before_render_tickets_list_table'); ?>;
+VI: Thực hiện trước khi render tickets list table.
+EN: Executed before render tickets list table.
+
+File ---> application\views\admin\tickets\partials\ticket-tabpanel-add-reply.php:
+   5:      <?php hooks()->do_action('before_admin_ticket_addreply_tabpanel_content', $ticket); ?>;
+   164:      <?= hooks()->apply_filters('ticket_add_response_and_back_to_list_default', 'checked'); ?>;
+VI: Thực hiện trước khi admin ticket addreply tabpanel content, Hook can thiệp vào ticket add response and back to list default.
+EN: Executed before admin ticket addreply tabpanel content, Hook to interact with ticket add response and back to list default.
+
+File ---> application\views\admin\tickets\single.php:
+   178:      <?php hooks()->do_action('after_admin_single_ticket_tab_menu_last_item', $ticket); ?>;
+   192:      <?php hooks()->do_action('after_admin_single_ticket_tab_menu_last_content', $ticket); ?>;
+   278:      <?php hooks()->do_action('ticket_admin_single_page_loaded', $ticket); ?>;
+VI: Thực hiện sau khi admin single ticket tab menu last item, Thực hiện sau khi admin single ticket tab menu last content, Hook can thiệp vào ticket admin single page loaded.
+EN: Executed after admin single ticket tab menu last item, Executed after admin single ticket tab menu last content, Hook to interact with ticket admin single page loaded.
+
+File ---> application\views\admin\utilities\bulk_pdf_exporter.php:
+   124:      <?php hooks()->do_action('after_bulk_pdf_export_options'); ?>;
+VI: Thực hiện sau khi bulk pdf export options.
+EN: Executed after bulk pdf export options.
+
+File ---> application\views\admin\utilities\calendar.php:
+   19:      <?php hooks()->do_action('after_calendar_loaded');?>;
+VI: Thực hiện sau khi calendar loaded.
+EN: Executed after calendar loaded.
+
+File ---> application\views\admin\utilities\calendar_filters.php:
+   7:      <?php hooks()->do_action('before_calendar_filters'); ?>;
+   104:      <?php hooks()->do_action('after_calendar_filters'); ?>;
+VI: Thực hiện trước khi calendar filters, Thực hiện sau khi calendar filters.
+EN: Executed before calendar filters, Executed after calendar filters.
+
+File ---> application\views\authentication\includes\head.php:
+   58:      <?php hooks()->do_action('app_admin_authentication_head'); ?>;
+VI: Hook can thiệp vào app admin authentication head.
+EN: Hook to interact with app admin authentication head.
+
+File ---> application\views\authentication\login_admin.php:
+   29:      <?php hooks()->do_action('after_admin_login_form_start'); ?>;
+   72:      <?php hooks()->do_action('before_admin_login_form_close'); ?>;
+VI: Thực hiện sau khi admin login form start, Thực hiện trước khi admin login form close.
+EN: Executed after admin login form start, Executed before admin login form close.
+
+File ---> application\views\forms\estimate_request.php:
+   11:      <?php hooks()->do_action('app_estimate_request_form_head'); ?>;
+   33:      <?php hooks()->do_action('estimate_request_form_start'); ?>;
+   72:      <?php hooks()->do_action('estimate_request_form_end'); ?>;
+   166:      <?php hooks()->do_action('app_estimate_request_form_footer'); ?>;
+VI: Hook can thiệp vào app estimate request form head, Hook can thiệp vào estimate request form start, Hook can thiệp vào estimate request form end, Hook can thiệp vào app estimate request form footer.
+EN: Hook to interact with app estimate request form head, Hook to interact with estimate request form start, Hook to interact with estimate request form end, Hook to interact with app estimate request form footer.
+
+File ---> application\views\forms\public_ticket.php:
+   2:      <?php hooks()->do_action('public_ticket_start', $ticket); ?>;
+   9:      <?php hooks()->do_action('public_ticket_end', $ticket); ?>;
+VI: Hook can thiệp vào public ticket start, Hook can thiệp vào public ticket end.
+EN: Hook to interact with public ticket start, Hook to interact with public ticket end.
+
+File ---> application\views\forms\ticket.php:
+   9:      <title><?php echo hooks()->apply_filters('ticket_form_title', _l('new_ticket')); ?></title>;
+   16:      <?php hooks()->do_action('app_ticket_form_head'); ?>;
+   32:      <?php hooks()->do_action('ticket_form_start'); ?>;
+   35:      <?php hooks()->do_action('ticket_form_after_subject'); ?>;
+   40:      <?php hooks()->do_action('ticket_form_after_name'); ?>;
+   44:      <?php hooks()->do_action('ticket_form_after_email'); ?>;
+   56:      <?php hooks()->do_action('ticket_form_after_department'); ?>;
+   58:      <?php echo render_select('priority', $priorities, ['priorityid', 'name'], 'ticket_form_priority', hooks()->apply_filters('new_ticket_priority_selected', 2), ['required' => 'true']); ?>;
+   59:      <?php hooks()->do_action('ticket_form_after_priority'); ?>;
+   66:      hooks()->do_action('ticket_form_after_service');
+   71:      <?php hooks()->do_action('ticket_form_after_custom_fields'); ?>;
+   74:      <?php hooks()->do_action('ticket_form_after_message'); ?>;
+   95:      <?php hooks()->do_action('ticket_form_after_attachments'); ?>;
+   131:      <?php hooks()->do_action('ticket_form_after_submit_button'); ?>;
+   133:      <?php hooks()->do_action('ticket_form_end'); ?>;
+   217:      <?php hooks()->do_action('app_ticket_form_footer'); ?>;
+VI: Hook can thiệp vào ticket form title, Hook can thiệp vào app ticket form head, Hook can thiệp vào ticket form start, Hook can thiệp vào ticket form after subject, Hook can thiệp vào ticket form after name, Hook can thiệp vào ticket form after email, Hook can thiệp vào ticket form after department, Hook can thiệp vào new ticket priority selected, Hook can thiệp vào ticket form after priority, Hook can thiệp vào ticket form after service, Hook can thiệp vào ticket form after custom fields, Hook can thiệp vào ticket form after message, Hook can thiệp vào ticket form after attachments, Hook can thiệp vào ticket form after submit button, Hook can thiệp vào ticket form end, Hook can thiệp vào app ticket form footer.
+EN: Hook to interact with ticket form title, Hook to interact with app ticket form head, Hook to interact with ticket form start, Hook to interact with ticket form after subject, Hook to interact with ticket form after name, Hook to interact with ticket form after email, Hook to interact with ticket form after department, Hook to interact with new ticket priority selected, Hook to interact with ticket form after priority, Hook to interact with ticket form after service, Hook to interact with ticket form after custom fields, Hook to interact with ticket form after message, Hook to interact with ticket form after attachments, Hook to interact with ticket form after submit button, Hook to interact with ticket form end, Hook to interact with app ticket form footer.
+
+File ---> application\views\forms\web_to_lead.php:
+   11:      <?php hooks()->do_action('app_web_to_lead_form_head'); ?>;
+   32:      <?php hooks()->do_action('web_to_lead_form_start'); ?>;
+   67:      <?php hooks()->do_action('web_to_lead_form_end'); ?>;
+   154:      <?php hooks()->do_action('app_web_to_lead_form_footer'); ?>;
+VI: Hook can thiệp vào app web to lead form head, Hook can thiệp vào web to lead form start, Hook can thiệp vào web to lead form end, Hook can thiệp vào app web to lead form footer.
+EN: Hook to interact with app web to lead form head, Hook to interact with web to lead form start, Hook to interact with web to lead form end, Hook to interact with app web to lead form footer.
+
+File ---> application\views\themes\perfex\head.php:
+   21:      <?php hooks()->do_action('customers_after_body_start'); ?>;
+VI: Hook can thiệp vào customers after body start.
+EN: Hook to interact with customers after body start.
+
+File ---> application\views\themes\perfex\index.php:
+   15:      <?php hooks()->do_action('customers_content_container_start'); ?>;
+   23:      <?php hooks()->do_action('before_customers_area_sub_menu_start'); ?>;
+   50:      <?php hooks()->do_action('after_customers_area_sub_menu_end'); ?>;
+VI: Hook can thiệp vào customers content container start, Thực hiện trước khi customers area sub menu start, Thực hiện sau khi customers area sub menu end.
+EN: Hook to interact with customers content container start, Executed before customers area sub menu start, Executed after customers area sub menu end.
+
+File ---> application\views\themes\perfex\views\consent.php:
+   12:      <?= e(hooks()->apply_filters('consent_public_page_heading', get_option('companyname'))); ?>;
+VI: Hook can thiệp vào consent public page heading.
+EN: Hook to interact with consent public page heading.
+
+File ---> application\views\themes\perfex\views\credit_note_pdf.php:
+   43:      $credit_note_info = hooks()->apply_filters('credit_note_pdf_header_after_shipping_info', $credit_note_info, $credit_note);
+   47:      $credit_note_info = hooks()->apply_filters('credit_note_pdf_header_after_date', $credit_note_info, $credit_note);
+   51:      $credit_note_info = hooks()->apply_filters('credit_note_pdf_header_after_reference_no', $credit_note_info, $credit_note);
+   56:      $credit_note_info = hooks()->apply_filters('credit_note_pdf_header_after_project', $credit_note_info, $credit_note);
+   59:      $credit_note_info = hooks()->apply_filters('credit_note_pdf_header_before_custom_fields', $credit_note_info, $credit_note);
+   69:      $credit_note_info = hooks()->apply_filters('credit_note_pdf_header_after_custom_fields', $credit_note_info, $credit_note);
+   77:      $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 6));
+VI: Hook can thiệp vào credit note pdf header after shipping info, Hook can thiệp vào credit note pdf header after date, Hook can thiệp vào credit note pdf header after reference no, Hook can thiệp vào credit note pdf header after project, Hook can thiệp vào credit note pdf header before custom fields, Hook can thiệp vào credit note pdf header after custom fields, Hook can thiệp vào pdf info and table separator.
+EN: Hook to interact with credit note pdf header after shipping info, Hook to interact with credit note pdf header after date, Hook to interact with credit note pdf header after reference no, Hook to interact with credit note pdf header after project, Hook to interact with credit note pdf header before custom fields, Hook to interact with credit note pdf header after custom fields, Hook to interact with pdf info and table separator.
+
+File ---> application\views\themes\perfex\views\estimatehtml.php:
+   223:      <?php hooks()->do_action('after_total_summary_estimatehtml', $estimate); ?>;
+VI: Thực hiện sau khi total summary estimatehtml.
+EN: Executed after total summary estimatehtml.
+
+File ---> application\views\themes\perfex\views\estimatepdf.php:
+   68:      $organization_info = hooks()->apply_filters('estimatepdf_organization_info', $organization_info, $estimate);
+   76:      $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 6));
+VI: Hook can thiệp vào estimatepdf organization info, Hook can thiệp vào pdf info and table separator.
+EN: Hook to interact with estimatepdf organization info, Hook to interact with pdf info and table separator.
+
+File ---> application\views\themes\perfex\views\files.php:
+   5:      <?php hooks()->do_action('after_customers_area_files_heading'); ?>;
+   11:      <?php hooks()->do_action('after_customers_area_files_dropzone'); ?>;
+   102:      <?php hooks()->do_action('after_customers_area_files'); ?>;
+VI: Thực hiện sau khi customers area files heading, Thực hiện sau khi customers area files dropzone, Thực hiện sau khi customers area files.
+EN: Executed after customers area files heading, Executed after customers area files dropzone, Executed after customers area files.
+
+File ---> application\views\themes\perfex\views\home.php:
+   11:      <?php hooks()->do_action('client_area_after_project_overview'); ?>;
+   85:      <?php hooks()->do_action('client_area_dashboard_end'); ?>;
+VI: Hook can thiệp vào client area after project overview, Hook can thiệp vào client area dashboard end.
+EN: Hook to interact with client area after project overview, Hook to interact with client area dashboard end.
+
+File ---> application\views\themes\perfex\views\invoicehtml.php:
+   75:      <?php hooks()->do_action('after_left_panel_invoicehtml', $invoice); ?>;
+   134:      <?php hooks()->do_action('after_right_panel_invoicehtml', $invoice); ?>;
+   238:      <?php hooks()->do_action('after_total_summary_invoicehtml', $invoice); ?>;
+VI: Thực hiện sau khi left panel invoicehtml, Thực hiện sau khi right panel invoicehtml, Thực hiện sau khi total summary invoicehtml.
+EN: Executed after left panel invoicehtml, Executed after right panel invoicehtml, Executed after total summary invoicehtml.
+
+File ---> application\views\themes\perfex\views\invoicepdf.php:
+   52:      $invoice_info = hooks()->apply_filters('invoice_pdf_header_after_date', $invoice_info, $invoice);
+   56:      $invoice_info = hooks()->apply_filters('invoice_pdf_header_after_due_date', $invoice_info, $invoice);
+   61:      $invoice_info = hooks()->apply_filters('invoice_pdf_header_after_sale_agent', $invoice_info, $invoice);
+   66:      $invoice_info = hooks()->apply_filters('invoice_pdf_header_after_project_name', $invoice_info, $invoice);
+   69:      $invoice_info = hooks()->apply_filters('invoice_pdf_header_before_custom_fields', $invoice_info, $invoice);
+   79:      $invoice_info      = hooks()->apply_filters('invoice_pdf_header_after_custom_fields', $invoice_info, $invoice);
+   80:      $organization_info = hooks()->apply_filters('invoicepdf_organization_info', $organization_info, $invoice);
+   81:      $invoice_info      = hooks()->apply_filters('invoice_pdf_info', $invoice_info, $invoice);
+   89:      $pdf->Ln(hooks()->apply_filters('pdf_info_and_table_separator', 6));
+VI: Hook can thiệp vào invoice pdf header after date, Hook can thiệp vào invoice pdf header after due date, Hook can thiệp vào invoice pdf header after sale agent, Hook can thiệp vào invoice pdf header after project name, Hook can thiệp vào invoice pdf header before custom fields, Hook can thiệp vào invoice pdf header after custom fields, Hook can thiệp vào invoicepdf organization info, Hook can thiệp vào invoice pdf info, Hook can thiệp vào pdf info and table separator.
+EN: Hook to interact with invoice pdf header after date, Hook to interact with invoice pdf header after due date, Hook to interact with invoice pdf header after sale agent, Hook to interact with invoice pdf header after project name, Hook to interact with invoice pdf header before custom fields, Hook to interact with invoice pdf header after custom fields, Hook to interact with invoicepdf organization info, Hook to interact with invoice pdf info, Hook to interact with pdf info and table separator.
+
+File ---> application\views\themes\perfex\views\knowledge_base.php:
+   19:      hooks()->do_action('after_kb_groups_customers_area');
+VI: Thực hiện sau khi kb groups customers area.
+EN: Executed after kb groups customers area.
+
+File ---> application\views\themes\perfex\views\knowledge_base_article.php:
+   31:      <?php hooks()->do_action('after_single_knowledge_base_article_customers_area', $article->articleid); ?>;
+VI: Thực hiện sau khi single knowledge base article customers area.
+EN: Executed after single knowledge base article customers area.
+
+File ---> application\views\themes\perfex\views\login.php:
+   11:      <?php hooks()->do_action('clients_login_form_start'); ?>;
+   80:      <?php hooks()->do_action('clients_login_form_end'); ?>;
+VI: Hook can thiệp vào clients login form start, Hook can thiệp vào clients login form end.
+EN: Hook to interact with clients login form start, Hook to interact with clients login form end.
+
+File ---> application\views\themes\perfex\views\open_ticket.php:
+   8:      <?php hooks()->do_action('before_client_open_ticket_form_start'); ?>;
+   70:      <?= set_select('priority', $priority['priorityid'], hooks()->apply_filters('new_ticket_priority_selected', 2) == $priority['priorityid']); ?>>;
+VI: Thực hiện trước khi client open ticket form start, Hook can thiệp vào new ticket priority selected.
+EN: Executed before client open ticket form start, Hook to interact with new ticket priority selected.
+
+File ---> application\views\themes\perfex\views\profile.php:
+   6:      <?php hooks()->do_action('before_client_profile_form_loaded'); ?>;
+   156:      <?php hooks()->do_action('after_client_profile_form_loaded'); ?>;
+   206:      <?php hooks()->do_action('after_client_profile_password_form_loaded'); ?>;
+VI: Thực hiện trước khi client profile form loaded, Thực hiện sau khi client profile form loaded, Thực hiện sau khi client profile password form loaded.
+EN: Executed before client profile form loaded, Executed after client profile form loaded, Executed after client profile password form loaded.
+

@@ -1,6 +1,5 @@
-======================================================
-    PERFEX CRM HOOKS COLLECTION - THE ULTIMATE DEVELOPER RESOURCE
-=================================================================
+PERFEX CRM HOOKS COLLECTION - THE ULTIMATE DEVELOPER RESOURCE
+=============================================================
 
 --- [ ENGLISH ] ---
 
@@ -28,7 +27,7 @@ This hook list has been used to develop world-class utility modules such as:
 
 --- [ TIẾNG VIỆT ] ---
 
-Tài liệu này tổng hợp toàn bộ các Hooks (Actions & Filters) có trong lõi hệ thống Perfex CRM qua từng phiên bản. Đây là nguồn tài nguyên giúp các nhà phát triển làm chủ hệ thống, tùy biến giao diện và tính năng mà không làm thay đổi mã nguồn cốt lõi (core).
+Tài liệu này tổng hợp toàn bộ các Hooks (Actions & Filters) có trong lõi hệ thống Perfex CRM qua từng phiên bản. Đây là nguồn tài nguyên giúp các nhà phát triển các modules tính năng theo nghiệp vụ riêng, tùy biến giao diện và tính năng mà không làm thay đổi mã nguồn cốt lõi (core).
 
 🎯 MỤC TIÊU:
 
@@ -50,6 +49,4 @@ Danh sách hook này được áp dụng phát triển các module tiện ích �
 
 - Phiên bản v3.4.0: [./version_v340/hooks_list.txt](./version_v340/hooks_list.txt)
 
-======================================================
-Built with passion for the Perfex CRM Developer Community.
-==========================================================
+**Built with passion for the Perfex CRM Developer Community.**
